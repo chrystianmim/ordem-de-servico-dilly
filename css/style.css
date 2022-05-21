@@ -1,9 +1,10 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css);
 
-a, a:hover {
+a,
+a:hover {
     color: black;
     text-decoration: none;
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 /* .box-style {
@@ -16,4 +17,23 @@ a, a:hover {
     height: 35px;
     font-size: 25px;
     margin: 10px;
+}
+
+legend {
+    font-size: medium;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.lead {
+    margin-top: 20px !important;
+}
+
+.btn {
+    margin-top: 5px !important;
 }
