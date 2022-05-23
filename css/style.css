@@ -37,3 +37,9 @@ label {
 .btn {
     margin-top: 5px !important;
 }
+
+.alert-size {
+    height: 38px;
+    padding: 5px 12px;
+    margin: 5px 0px;
+}
