@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
+const mysql = require("mysql");
 
 /* Rotas */
 
@@ -18,6 +20,18 @@ app.get("/pagCadastroSetor", function(req, res) {
 app.post("/pagCadastroSetor", function(req, res) {
   var setor = req.body.setor;
   res.sendFile(__dirname + "/public/pages/cadastro-geral/cadastroSetor.html");
+})
+
+app.get("/pagCadastroFuncao", function (req, res) {
+  res.sendFile(__dirname + "/public/pages/cadastro-geral/cadastroFuncao.html");
+});
+
+app.post("/pagCadastroFuncao", function (req, res) {
+  var funcao = req.body.funcao;
+  var descricaoFuncao = req.body.descricaoFuncao;
+  console.log(funcao);
+  console.log(descricaoFuncao);
+  res.sendFile(__dirname + "/public/pages/cadastro-geral/cadastroFuncao.html");
 })
 
 app.listen(3000);
