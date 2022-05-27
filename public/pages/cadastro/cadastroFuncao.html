@@ -35,16 +35,17 @@
               <label for="funcao">Função</label>
               <input type="text" class="form-control" name="funcao" id="funcao" placeholder="Nome da função">
             </div>
+
+            <!--
+              Validação para aceitar apenas números e já entregar no formato XXX-XX
+              Validação para submeter apenas quando os dois campos estiverem preenchidos
+            -->
+
             <div class="form-group col-md-6">
-              <label for="cbo">CBO</label>
-              <input type="text" class="form-control" name="funcao" id="funcao" placeholder="CBO da função">
+              <label for="cbo">CBO</label> 
+              <input type="text" pattern="[0-9]+" class="form-control" name="cbo" id="cbo" placeholder="CBO da função">
             </div>
-          </div> <!-- row end -->          
-          <div class="form-group">
-            <label for="descricaoFuncao">Descrição</label>
-            <textarea class="form-control" name="descricaoFuncao" id="descricaoFuncao"
-              placeholder="Insira a descrição para a função" rows="5"></textarea>
-          </div>
+          </div> <!-- row end -->
           <div class="form-group">
             <button type="submit" class="btn btn-primary" id="incluir">Incluir</button>
           </div>

@@ -14,11 +14,11 @@ app.get("/home", function(req, res) {
 });
 
 app.get("/pagCadastroSetor", function(req, res) {
-  res.sendFile(__dirname + "/public/pages/cadastro-geral/cadastroSetor.html");
+  res.sendFile(__dirname + "/public/pages/cadastro/cadastroSetor.html");
 });
 
 app.get("/pagCadastroFuncao", function (req, res) {
-  res.sendFile(__dirname + "/public/pages/cadastro-geral/cadastroFuncao.html");
+  res.sendFile(__dirname + "/public/pages/cadastro/cadastroFuncao.html");
 });
 
 
@@ -26,14 +26,15 @@ app.get("/pagCadastroFuncao", function (req, res) {
 
 app.post("/pagCadastroSetor", function(req, res) {
   var setor = req.body.setor;
-  res.sendFile(__dirname + "/public/pages/cadastro-geral/cadastroSetor.html");
+  res.sendFile(__dirname + "/public/pages/cadastro/cadastroSetor.html");
 })
 
 app.post("/pagCadastroFuncao", function (req, res) {
   var funcao = req.body.funcao;
-  // INCLUIR VAR CBO
-  var descricaoFuncao = req.body.descricaoFuncao;
-  res.sendFile(__dirname + "/public/pages/cadastro-geral/cadastroFuncao.html");
+  var cbo = req.body.cbo;
+  console.log(funcao);
+  console.log(cbo);
+  res.sendFile(__dirname + "/public/pages/cadastro/cadastroFuncao.html");
 })
 
 app.listen(3000);

@@ -1,4 +1,4 @@
-// validação para formulário de cadastro de funções;
+// validação para formulário de cadastro de setor;
 
 $('#formSetor').submit(function() { // função submit do jQuery direto no form
   let setor = document.querySelector('#setor');
@@ -17,9 +17,11 @@ $('#formSetor').submit(function() { // função submit do jQuery direto no form
   return true
 });
 
+// validação para formulário de cadastro de função;
+
 $('#formFuncao').submit(function () { // função submit do jQuery direto no form
   let funcao = document.querySelector('#funcao');
-  let descricaoFuncao = document.querySelector('#descricaoFuncao');
+  let cbo = document.querySelector('#cbo');
   let erro = document.querySelector('#erro');
 
   // inicia a função tornando o erro invisível
@@ -32,7 +34,7 @@ $('#formFuncao').submit(function () { // função submit do jQuery direto no for
   }
 
   setor.value = setor.value.toUpperCase(); // transforma o setor em uppercase
-  return true
+  return false
 });
 
 // *CRIAR* validação para formulário de cadastro de funções

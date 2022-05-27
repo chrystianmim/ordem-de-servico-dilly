@@ -1,29 +1,26 @@
-cadastro setor
-	- setor
+- cadastro setor
+	- setor (text)
 
-cadastro função
-	- nome função
-	- cbo
+- cadastro função
+	- nome função (text)
+	- cbo  (number, formato XXXX OU XXXX-XX)
 
-cadastro OS
-	- nome função (auto)
-	- cbo (auto)
-  - setor (dropdown)
-	- descrição da função
-	- riscos associados às atividades
-	- EPIs recomendados (checkbox)
-    - Obrigatórios
-		- Quando aplicáveis
-	- medidas preventitas (recomendações)
-	- procedimentos em caso de acidente
-	- observações
-	- termo de responsabilidade
+- cadastro OS
+	- setor (dropdown sql)
+	- nome função (dropdown sql)
+	- cbo (sql)
+	- descrição da função (textarea)
+	- riscos associados às atividades (textarea)
+	- EPIs recomendados (textarea)
+	- medidas preventitas (recomendações) (textarea)
+	- procedimentos em caso de acidente (textarea)
+	- observações (textarea)
+	- termo de responsabilidade (textarea)
 
-emitir OS
-	- função (dropdown)
-	- setor (dropdown dos setores que possuem aquela função)
+- emitir OS
+	- setor (dropdown sql)
+	- função (dropdown sql das funções que estão dentro do setor)
 	- botão filtrar
-  - código
-  - nome
-  - data da ordem
-	- campo de assinatura (padrão do formulário pdf)
+	- código (number)
+	- nome (text char45)
+	- data da ordem (date)
