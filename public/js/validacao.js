@@ -13,7 +13,6 @@ $('#formSetor').submit(function() { // função submit do jQuery direto no form
     return false
   }
 
-  funcao.value = setor.value.toUpperCase(); // transforma a função em uppercase
   return true
 });
 
@@ -32,8 +31,7 @@ $('#formFuncao').submit(function () { // função submit do jQuery direto no for
     setor.focus();
     return false
   }
-
-  setor.value = setor.value.toUpperCase(); // transforma o setor em uppercase
+ 
   return false
 });
 
