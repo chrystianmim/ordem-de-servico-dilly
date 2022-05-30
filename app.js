@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 
 app.get("/home", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "views/pages/index.ejs");
 });
 
 app.get("/pagCadastroSetor", (req, res) => {
