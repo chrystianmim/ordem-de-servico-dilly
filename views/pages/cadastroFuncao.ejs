@@ -12,19 +12,7 @@
 
   <body>
     <header class="p-3 bg-dark text-white" style="padding: 10px !important">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center
-            justify-content-center justify-content-lg-start">
-          <a href="../../index.html">
-            <div class="d-flex align-items-center mb-2 mb-lg-0" style="width: 150px;
-                height: 50px;
-                background-image: url(/src/logo-dilly-branco.png);
-                background-position-x: center;
-                background-size: cover;">
-            </div>
-          </a>
-        </div>
-      </div>
+      <%- include('../partials/_header') %>
     </header>
     <section>
       <div class="container">
@@ -59,6 +47,11 @@
         # incluir tabela com funções cadastradas #
       </div>
     </section>
+
+    <footer>
+      <%- include('../partials/_footer') %>
+    </footer>
+    
     <!-- Scripts -->
     <script src="../../js/jquery.js"></script>
     <script src="../../js/bootstrap.bundle.min.js"></script>

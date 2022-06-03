@@ -12,19 +12,7 @@
 
 <body>
   <header class="p-3 bg-dark text-white" style="padding: 10px !important">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center
-            justify-content-center justify-content-lg-start">
-        <a href="../../index.html">
-          <div class="d-flex align-items-center mb-2 mb-lg-0" style="width: 150px;
-                height: 50px;
-                background-image: url(/src/logo-dilly-branco.png);
-                background-position-x: center;
-                background-size: cover;">
-          </div>
-        </a>
-      </div>
-    </div>
+    <%- include('../partials/_header') %>
   </header>
   <section>
     <div class="container">
@@ -59,18 +47,8 @@
     </div>
   </section>
 
-  <footer class="container-fluid border-top position-fixed bottom-0 start-50 translate-middle">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center py-3">
-      <div class="col-md-4 d-flex align-items-center">
-        <svg class="bi" width="30" height="24"></svg>
-        <span class="text-muted">© 2022 <a href="https://www.dillysports.com.br/" target="_blank">Dilly Sports</a></span>
-      </div>
-  
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-muted" href="https://www.linkedin.com/company/dilly-nordeste-ind-de-cal%C3%A7ados/" target="_blank" ><i class="fa-brands fa-linkedin-in"></i></a></li>
-        <li><svg class="bi" width="30" height="24"></svg></li>          
-      </ul>
-    </div>      
+  <footer>
+    <%- include('../partials/_footer') %>
   </footer>
 
   <!-- Scripts -->

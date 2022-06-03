@@ -22,26 +22,39 @@ connection.connect((err) => {
   console.log("DB connection success! ID: " + connection.threadId);
 });
 
+// some settings
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
+
+// setting ejs as view engine
 app.set('view engine', 'ejs');
 
-// Routes
+// Routes ####################
+
 app.get("/", (req, res) => {
   res.render("pages/index");
 });
 
-app.get("/pagCadastroSetor", (req, res) => {
-  res.sendFile(__dirname + "/public/pages/cadastro/cadastroSetor.html");
+app.get("/pages/cadastroSetor", (req, res) => {
+  res.render("pages/cadastroSetor");
 });
 
-app.get("/pagCadastroFuncao", (req, res) => {
-  res.sendFile(__dirname + "/public/pages/cadastro/cadastroFuncao.html");
+app.get("/pages/cadastroFuncao", (req, res) => {
+  res.render("pages/cadastroFuncao");
 });
 
+app.get("/pages/cadastroOrdem", (req, res) => {
+  res.render("pages/cadastroOrdem");
+});
 
-// Posts & SQL create queries
+app.get("/pages/emitirOrdem", (req, res) => {
+  res.render("pages/emitirOrdem");
+});
+
+// ###########################
+
+// Posts & SQL create queries ###############
 
 app.post("/pages/cadastro/cadastroSetor.html", (req, res) => {
   var setor = req.body.setor;
@@ -57,6 +70,8 @@ app.post("/pages/cadastro/cadastroFuncao.html", (req, res) => {
   console.log(cbo);
   res.sendFile(__dirname + "/public/pages/cadastro/cadastroFuncao.html");
 })
+
+// ##########################################
 
 // SQL read queries
 

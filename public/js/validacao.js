@@ -16,6 +16,8 @@ $('#formSetor').submit(function() { // função submit do jQuery direto no form
   return true
 });
 
+// ######################################
+
 // validação para formulário de cadastro de função;
 
 $('#formFuncao').submit(function () { // função submit do jQuery direto no form
@@ -35,4 +37,13 @@ $('#formFuncao').submit(function () { // função submit do jQuery direto no for
   return false
 });
 
-// *CRIAR* validação para formulário de cadastro de funções
+// ######################################
+
+// validação e formatação do campo cbo
+
+// FAZER USANDO MASK
+/* var cbo = document.querySelector("#cbo");
+cbo.addEventListener('keyup', function (event) {
+  var n = this.value;
+  cbo.value = n.mask("0000-00").toLocaleString();
+}, false); */

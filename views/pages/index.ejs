@@ -19,13 +19,13 @@
 
     <div class="container">
       <section>
-          <h2 class="container text-center" style="margin-top: 20px">Ordem de Serviço de Segurança</h2>
+          <h3 class="container text-center" style="margin-top: 20px">Ordem de Serviço de Segurança</h3>
           <div class="row g-4 py-5">
             <div class="col d-flex align-items-center btn btn-info box-margin btn-titulo">
               <div class="icon">
                 <i class="fa-regular fa-file-lines"></i>
               </div>
-              <a href="pages\cadastro\cadastroSetor.html">
+              <a href=".\pages\cadastroSetor">
                 <div>
                   <h5 class="fw-bold mb-0">Cadastrar Setor</h5>
                 </div>
@@ -36,7 +36,7 @@
               <div class="icon">
                 <i class="fa-regular fa-file-lines"></i>
               </div>
-              <a href="pages\cadastro\cadastroFuncao.html">
+              <a href=".\pages\cadastroFuncao">
                 <h5 class="fw-bold mb-0">Cadastrar Função</h5>
               </a>
             </div>
@@ -45,7 +45,7 @@
               <div class="icon">
                 <i class="fa-regular fa-file-lines"></i>
               </div>
-              <a href="pages\ordem-servico\cadastroOrdem.html">
+              <a href=".\pages\cadastroOrdem">
                 <h5 class="fw-bold mb-0">Cadastrar Ordem</h5>
               </a>
             </div>
@@ -54,7 +54,7 @@
               <div class="icon">
                 <i class="fa-solid fa-file-export"></i>
               </div>
-              <a href="pages\ordem-servico\emitirOrdem.html">
+              <a href=".\pages\emitirOrdem">
                 <div>
                   <h5 class="fw-bold mb-0">Emitir Ordem</h5>
                 </div>
@@ -62,7 +62,7 @@
             </div>        
           </div> 
 
-          <h2 class="container text-center" style="margin-top: 20px">Emissão de Certificado</h2>
+          <h3 class="container text-center" style="margin-top: 20px">Emissão de Certificado</h3>
           <div class="row g-4 py-5">
             <div class="col d-flex align-items-center btn btn-info box-margin btn-titulo">
               <div class="icon">
@@ -97,7 +97,9 @@
       </section>   
     </div> <!-- .container end -->
 
-    <footer> <%- include('../partials/_footer') %> </footer>
+    <footer>
+      <%- include('../partials/_footer') %>
+    </footer>
     <script src="/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
