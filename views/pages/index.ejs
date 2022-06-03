@@ -14,19 +14,7 @@
   </head>
   <body>
     <header class="p-3 bg-dark text-white" style="padding: 10px !important">
-      <div class="container">
-        <div
-          class="d-flex flex-wrap align-items-center justify-content-center
-          justify-content-lg-start">
-          <a href="/"><div
-              class="d-flex align-items-center mb-2 mb-lg-0"
-              style="width: 150px;
-              height: 50px;
-              background-image: url(/src/logo-dilly-branco.png);
-              background-position-x: center;
-              background-size: cover;"></div></a>
-        </div>
-      </div>
+      <%- include('../partials/_header') %> 
     </header>
 
     <div class="container">
@@ -71,13 +59,45 @@
                   <h5 class="fw-bold mb-0">Emitir Ordem</h5>
                 </div>
               </a>
+            </div>        
+          </div> 
+
+          <h2 class="container text-center" style="margin-top: 20px">Emissão de Certificado</h2>
+          <div class="row g-4 py-5">
+            <div class="col d-flex align-items-center btn btn-info box-margin btn-titulo">
+              <div class="icon">
+                <i class="fa-regular fa-file-lines"></i>
+              </div>
+              <a href="pages\cadastro\cadastroSetor.html">
+                <div>
+                  <h5 class="fw-bold mb-0">Cadastrar Instrutor</h5>
+                </div>
+              </a>
             </div>
         
+            <div class="col d-flex align-items-center btn btn-info box-margin btn-titulo">
+              <div class="icon">
+                <i class="fa-regular fa-file-lines"></i>
+              </div>
+              <a href="pages\cadastro\cadastroFuncao.html">
+                <h5 class="fw-bold mb-0">Cadastrar Certificado</h5>
+              </a>
+            </div>
+        
+            <div class="col-4 d-flex align-items-center btn btn-info box-margin btn-titulo">
+              <div class="icon">
+                <i class="fa-solid fa-file-export"></i>
+              </div>
+              <a href="pages\ordem-servico\cadastroOrdem.html">
+                <h5 class="fw-bold mb-0">Emitir Certificado</h5>
+              </a>
+            </div>        
+              
           </div> 
       </section>   
     </div> <!-- .container end -->
 
-    <footer> <% include('..partials/_footer') %> </footer>
+    <footer> <%- include('../partials/_footer') %> </footer>
     <script src="/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

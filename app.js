@@ -1,5 +1,9 @@
+// express app
 const express = require("express");
 const app = express();
+
+// require ejs
+const ejs = require('ejs');
 
 // setting connection to mysql database
 const mysql = require("mysql2");
@@ -18,14 +22,14 @@ connection.connect((err) => {
   console.log("DB connection success! ID: " + connection.threadId);
 });
 
-// Rotas
-
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
+app.set('view engine', 'ejs');
 
-app.get("/home", (req, res) => {
-  res.sendFile(__dirname + "views/pages/index.ejs");
+// Routes
+app.get("/", (req, res) => {
+  res.render("pages/index");
 });
 
 app.get("/pagCadastroSetor", (req, res) => {
