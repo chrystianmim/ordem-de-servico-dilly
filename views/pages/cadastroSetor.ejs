@@ -1,83 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dev - Ordem de Serviço</title>
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link href="../../css/style.css" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emissão de Documentos de SST</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="../../css/style.css" rel="stylesheet">
+  </head>
 
-<body>
-  <header class="p-3 bg-dark text-white" style="padding: 10px !important">
-    <%- include('../partials/_header') %>
-  </header>
-  <section>
-    <div class="container">
-      <p class="lead">Cadastro de setores</p>
-      <div class="row">
-        <div class="col-4">
-          <form id="formSetor" action="/pages/cadastroSetor" method="post">
-            <div class="form-group">
-              <label for="setor">Setor</label>
-              <input type="text" class="form-control" name="setor" id="setor" placeholder="Insira o nome do setor">
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary" id="incluir">Incluir</button>
-            </div>
-            <!-- alert -->
-            <div class="alert alert-danger alert-size d-none" id="erro">
-              <strong>Atenção!</strong> Digite o nome do setor.
-            </div>
-          </form>
+  <body>
+    <header class="p-3 bg-dark text-white" style="padding: 10px !important">
+      <%- include('../partials/_header') %>
+    </header>
+    <section>
+      <div class="container">
+        <p class="lead">Cadastro de setores</p>
+        <div class="row">
+          <div class="col-4">
+            <form id="formSetor" action="/pages/cadastroSetor" method="post">
+              <div class="form-group">
+                <label for="setor">Setor</label>
+                <input type="text" class="form-control" name="setor" id="setor" placeholder="Insira o nome do setor">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="incluir">Incluir</button>
+              </div>
+              <!-- alert -->
+              <div class="alert alert-danger alert-size d-none" id="erro">
+                <strong>Atenção!</strong> Digite o nome do setor.
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-      <hr>
-      <p class="lead">Setores cadastrados</p>
-      <table class="table table-striped table-hover">
-        <thead class="table-light">
-          <tr>
-            <th class="col-1 text-center" scope="col">#</th>
-            <th scope="col">Setor</th>
-            <th class="col-1 text-center" scope="col">Ações</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          <% 
-          if (sqlData.lenght != 0) {
-            let i = 1;
-            sqlData.forEach((data) => {
-          %>
-
-          <tr>        
-            <th class="text-center" scope="row"><%= i %></th>
-            <td><%= data.setor %></td>
-            <td class="text-center">
-              <a href="\pages\edit\editarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-pen-to-square me-1 text-body"></i></a>
-              <a href="\pages\delete\deletarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-trash-can text-body"></i></a>
-            </td>
-          </tr> 
-
-          <% i++; }); %>
-          <% } else { %> 
-
+        <hr>
+        <p class="lead">Setores cadastrados</p>
+        <table class="table table-striped table-hover">
+          <thead class="table-light">
             <tr>
-              <td colspan="3">Não há setores cadastrados</td>
+              <th class="col-1 text-center" scope="col">#</th>
+              <th scope="col">Setor</th>
+              <th class="col-1 text-center" scope="col">Ações</th>
             </tr>
+          </thead>
 
-          <% }; %>         
-        </tbody>
-    </div>
-  </section>
+          <tbody>
 
-  <!-- <%- include('../partials/_footer') %> -->
+            <% 
+              if (sqlData.lenght != 0) {
+                let i = 1;
+                sqlData.forEach((data) => {
+            %>
 
-  <!-- Scripts -->
-  <%- include('../partials/_scripts') %>
-</body>
+            <tr>        
+              <th class="text-center" scope="row"><%= i %></th>
+              <td><%= data.setor %></td>
+              <td class="text-center">
+                <a href="\pages\edit\editarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-pen-to-square me-1 text-body"></i></a>
+                <a href="\pages\delete\deletarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-trash-can text-body"></i></a>
+              </td>
+            </tr> 
+
+            <% i++; }); %>
+            <% } else { %> 
+
+              <tr>
+                <td colspan="3">Não há setores cadastrados</td>
+              </tr>
+
+            <% }; %>         
+          </tbody>
+      </div> /* container end */
+    </section>
+
+    <!-- Footer -->
+    <!-- <%- include('../partials/_footer') %> -->
+
+    <!-- JS Scripts -->
+    <%- include('../../partials/_scripts') %>
+  </body>
 
 </html>
