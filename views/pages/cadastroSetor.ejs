@@ -19,7 +19,7 @@
       <p class="lead">Cadastro de setores</p>
       <div class="row">
         <div class="col-4">
-          <form id="formSetor" action="/pages/cadastro/cadastroSetor.html" method="post">
+          <form id="formSetor" action="/pages/cadastroSetor" method="post">
             <div class="form-group">
               <label for="setor">Setor</label>
               <input type="text" class="form-control" name="setor" id="setor" placeholder="Insira o nome do setor">
@@ -36,25 +36,48 @@
       </div>
       <hr>
       <p class="lead">Setores cadastrados</p>
-      <table class="table table-stripped table-hover">
-        <thead>
+      <table class="table table-striped table-hover">
+        <thead class="table-light">
           <tr>
-            <th scope="col">#</th>
+            <th class="col-1 text-center" scope="col">#</th>
             <th scope="col">Setor</th>
-            <th scope="col">Ações</th>
+            <th class="col-1 text-center" scope="col">Ações</th>
           </tr>
         </thead>
+
+        <tbody>
+
+          <% 
+          if (sqlData.lenght != 0) {
+            let i = 1;
+            sqlData.forEach((data) => {
+          %>
+
+          <tr>        
+            <th class="text-center" scope="row"><%= i %></th>
+            <td><%= data.setor %></td>
+            <td class="text-center">
+              <a href="\pages\edit\editarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-pen-to-square me-1 text-body"></i></a>
+              <a href="\pages\delete\deletarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-trash-can text-body"></i></a>
+            </td>
+          </tr> 
+
+          <% i++; }); %>
+          <% } else { %> 
+
+            <tr>
+              <td colspan="3">Não há setores cadastrados</td>
+            </tr>
+
+          <% }; %>         
+        </tbody>
     </div>
   </section>
 
-  <footer>
-    <%- include('../partials/_footer') %>
-  </footer>
+  <!-- <%- include('../partials/_footer') %> -->
 
   <!-- Scripts -->
-  <script src="../../js/jquery.js"></script>
-  <script src="../../js/bootstrap.bundle.min.js"></script>
-  <script src="../../js/validacao.js"></script>
+  <%- include('../partials/_scripts') %>
 </body>
 
 </html>

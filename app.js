@@ -7,19 +7,19 @@ const ejs = require('ejs');
 
 // setting connection to mysql database
 const mysql = require("mysql2");
-const connection = mysql.createConnection({
+const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   database: 'db_ordem-de-servico'
 });
 
-connection.connect((err) => {
+db.connect((err) => {
   if (err) {
     console.error("Error connecting to the database: " + err.stack);
     return;
   }
 
-  console.log("DB connection success! ID: " + connection.threadId);
+  console.log("DB connection success! ID: " + db.threadId);
 });
 
 // some settings
@@ -37,7 +37,23 @@ app.get("/", (req, res) => {
 });
 
 app.get("/pages/cadastroSetor", (req, res) => {
-  res.render("pages/cadastroSetor");
+  let sql = "SELECT * FROM tb_setores ORDER BY `setor` asc";
+  db.query(sql, (err, data) => {
+    if (err) throw err;
+    res.render("pages/cadastroSetor", {sqlData: data});
+  });  
+});
+
+app.get("/pages/edit/editarSetor", (req, res) => {
+  let idSetor = req.query.idSetor;
+  let sql = (`SELECT setor FROM tb_setores WHERE id=${idSetor}`);
+  db.query(sql, (err, data) => {
+    if (err) throw err;
+    res.render("pages/edit/editarSetor", {
+      sqlData: data,
+      idSetor: idSetor
+    });
+  });
 });
 
 app.get("/pages/cadastroFuncao", (req, res) => {
@@ -54,18 +70,18 @@ app.get("/pages/emitirOrdem", (req, res) => {
 
 // ###########################
 
-// Posts & SQL create queries ###############
+// SQL create queries ###############
 
-app.post("/pages/cadastro/cadastroSetor.html", (req, res) => {
-  var setor = req.body.setor;
+app.post("/pages/cadastroSetor", (req, res) => {
+  let setor = req.body.setor;
   setor = setor.toUpperCase(); // nome do setor para uppercase
-  connection.query(`INSERT INTO tb_setores(setor) VALUES ("${setor}")`);
-  res.sendFile(__dirname + "/public/pages/cadastro/cadastroSetor.html");
+  db.query(`INSERT INTO tb_setores(setor) VALUES ("${setor}")`);
+  res.redirect("cadastroSetor");
 })
 
 app.post("/pages/cadastro/cadastroFuncao.html", (req, res) => {
-  var funcao = req.body.funcao;
-  var cbo = req.body.cbo;
+  let funcao = req.body.funcao;
+  let cbo = req.body.cbo;
   console.log(funcao);
   console.log(cbo);
   res.sendFile(__dirname + "/public/pages/cadastro/cadastroFuncao.html");
@@ -75,11 +91,23 @@ app.post("/pages/cadastro/cadastroFuncao.html", (req, res) => {
 
 // SQL read queries
 
+// ##########################################
 
-// SQL update queires
+// SQL update queries
 
+app.post("/pages/edit/updateSetor", (req, res) => { // update setor
+  let setor = req.body.setor;
+  let idSetor = req.query.idSetor;
+  setor = setor.toUpperCase(); // nome do setor para uppercase
+  db.query(`UPDATE tb_setores SET setor = ("${setor}") WHERE id=("${idSetor}")`);
+  res.redirect("../../../pages/cadastroSetor");
+})
+
+// ##########################################
 
 // SQL delete queries
+
+// ##########################################
 
 app.listen(3000, "localhost", () => {
   console.log("Server connected on port: 3000");
