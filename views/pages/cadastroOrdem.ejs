@@ -12,11 +12,12 @@
 
   <body>
     <header class="p-3 bg-dark text-white" style="padding: 10px !important">
+      <!-- Header -->
       <%- include('../partials/_header') %>
     </header>
     <section>
       <div class="container">
-        <p class="lead">Cadastro de Ordem de Serviço de Segurança</p>
+        <p class="lead">Emissão de Ordem de Serviço de Segurança</p>
         <form id="formFuncao" action="/pagCadastroFuncao" method="post">
           <div class="row g-3">
             <div class="form-group col-md-4">
@@ -34,30 +35,49 @@
           </div> <!-- row 1 end -->
 
           <div class="row g-3 mt-1">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
               <label for="descFuncao">Descrição da função</label>
               <textarea class="form-control" name="descFuncao" id="descFuncao" rows="5" placeholder="Insira a descrição para a função"> </textarea>
             </div>
-            <div class="form-group col-md-6">
-              <label for="riscosAss">Riscos associados</label>
+            <div class="form-group col-md-4">
+              <label for="riscosAss">Riscos associados à atividade</label>
               <textarea class="form-control" name="riscosAss" id="riscosAss" rows="5" placeholder="Insira os riscos associados à função"> </textarea>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="episRec">EPIs recomendados</label>
+              <textarea class="form-control" name="episRec" id="episRec" rows="5"
+                placeholder="Insira os EPIs recomendados para a função"> </textarea>
             </div>
           </div> <!-- row 2 end -->
 
           <div class="row g-3 mt-1">
-            <div class="form-group col-md-12">
-              <label for="episRec">EPIs recomendados</label>
-              <textarea class="form-control" name="episRec" id="episRec" rows="2"
-                placeholder="Insira os EPIs recomendados para a função"> </textarea>
+            <div class="form-group col-md-6">
+              <label for="medidasPrev">Medidas preventivas (recomendações)</label>
+              <textarea class="form-control" name="medidasPrev" id="medidasPrev" rows="5"
+                placeholder="Insira as medidas de prevenção recomendadas para a função"> </textarea>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="procAcidente">Procedimento em caso de acidente</label>
+              <textarea class="form-control" name="procAcidente" id="procAcidente" rows="5"
+                placeholder="Procedimentos de segurança em caso de acidente"> </textarea>
             </div>
           </div> <!-- row 3 end -->
 
           <div class="row g-3 mt-1">
             <div class="form-group col-md-12">
-              <label for="medidasPrev">Medidas preventivas</label>
-              <textarea class="form-control" name="medidasPrev" id="medidasPrev" rows="5"
-                placeholder="Insira as medidas de prevenção recomendadas para a função"> </textarea>
-            </div> <!-- row 4 end -->
+              <label for="obs">Observações</label>
+              <textarea class="form-control" name="obs" id="obs" rows="5"
+                placeholder="Observações"> </textarea>
+            </div>
+          </div> <!-- row 4 end -->
+
+          <div class="row g-3 mt-1">
+            <div class="form-group col-md-12">
+              <label for="termoResp">Termo de responsabilidade</label>
+              <textarea class="form-control" name="termoResp" id="termoResp" rows="5"
+                placeholder="Termo de responsabilidade"> </textarea>
+            </div>
+          </div> <!-- row 5 end -->
 
           <div class="form-group">
             <button type="submit" class="btn btn-primary" id="incluir">Incluir</button>
@@ -68,35 +88,14 @@
           </div>
         </form>
         <hr>
-        <p class="lead">Funções cadastradas</p>
-        # incluir tabela com funções cadastradas #
       </div>
     </section>
 
+    <!-- Footer -->
     <!-- <%- include('../partials/_footer') %> -->
 
-    <!-- Scripts -->
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-    <script src="../../js/validacao.js"></script>
+    <!-- JS Scripts -->
+    <%- include('../partials/_scripts') %>
   </body>
 
 </html>
-
-<!--
-
-CADASTRO DE ORDENS DE SERVIÇO
-
-fieldset
-SETOR select from cadastroSetor.html
-FUNÇÃO select from cadastroFuncao.html
-CBO select from cadastroFuncao.html
-DESCRIÇÃO DA FUNÇÃO <input type="text">
-AGENTES ASSOCIADOS ÀS ATIVIDADES <input type="checkbox">
-EPI'S DE USO OBRIGATÓRIO <input type="checkbox">
-RECOMENDAÇÕES <input type="text">
-
-CADASTRAR <input type="submit">
-
-TABELA: ORDENS DE SERVIÇO CADASTRADAS
--->
