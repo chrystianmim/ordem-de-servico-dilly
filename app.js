@@ -40,7 +40,7 @@ app.get("/pages/cadastroSetor", (req, res) => {
   let sql = "SELECT * FROM tb_setores ORDER BY `setor` asc";
   db.query(sql, (err, data) => {
     if (err) throw err;
-    res.render("pages/cadastroSetor", {sqlData: data});
+    res.render("pages/ordem-servico/cadastroSetor", {sqlData: data});
   });  
 });
 
