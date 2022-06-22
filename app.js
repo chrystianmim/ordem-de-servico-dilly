@@ -44,7 +44,7 @@ app.get("/pages/cadastroSetor", (req, res) => {
   });  
 });
 
-app.get("/pages/edit/editarSetor", (req, res) => {
+app.get("/pages/ordem-servico/edit/editarSetor", (req, res) => {
   let idSetor = req.query.idSetor;
   let sql = (`SELECT setor FROM tb_setores WHERE id=${idSetor}`);
   db.query(sql, (err, data) => {
@@ -95,7 +95,7 @@ app.post("/pages/cadastro/cadastroFuncao.html", (req, res) => {
 
 // SQL update queries
 
-app.post("/pages/edit/updateSetor", (req, res) => { // update setor
+app.post("/pages/ordem-servico/edit/editarSetor", (req, res) => { // update setor
   let setor = req.body.setor;
   let idSetor = req.query.idSetor;
   setor = setor.toUpperCase(); // nome do setor para uppercase
