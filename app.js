@@ -49,7 +49,7 @@ app.get("/pages/ordem-servico/edit/editarSetor", (req, res) => {
   let sql = (`SELECT setor FROM tb_setores WHERE id=${idSetor}`);
   db.query(sql, (err, data) => {
     if (err) throw err;
-    res.render("pages/edit/editarSetor", {
+    res.render("pages/ordem-servico/edit/editarSetor", {
       sqlData: data,
       idSetor: idSetor
     });
@@ -106,6 +106,12 @@ app.post("/pages/ordem-servico/edit/editarSetor", (req, res) => { // update seto
 // ##########################################
 
 // SQL delete queries
+
+app.get("/pages/ordem-servico/delete/deletarSetor", (req, res) => { // delete setor
+  let idSetor = req.query.idSetor;
+  db.query(`DELETE FROM tb_setores WHERE id=("${idSetor}")`);
+  res.redirect("../../../pages/cadastroSetor");
+})
 
 // ##########################################
 

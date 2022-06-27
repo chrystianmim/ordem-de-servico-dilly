@@ -5,21 +5,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emissão de Documentos de SST</title>
-  <link href="../../css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link href="../../css/style.css" rel="stylesheet">
+  <title>Emissão de Documentos de SST</title> 
+  <link href="../../../css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="../../../css/style.css" rel="stylesheet">
 </head>
 
 <body>
   <header class="p-3 bg-dark text-white" style="padding: 10px !important">
-    <%- include('../../partials/_header') %>
+    <%- include('../../../partials/_header') %>
   </header>
   <section>
     <div class="container">
       <p class="lead">Editar setor cadastrado</p>
       <div class="row">
         <div class="col-4">
-          <form id="formSetor" action="/pages/edit/updateSetor?idSetor=<%= idSetor %>" method="post">
+          <form id="formSetor" action="/pages/ordem-servico/edit/editarSetor?idSetor=<%= idSetor %>" method="post">
             <div class="form-group">
               <label for="setor">Setor</label>
               <input type="text" class="form-control" name="setor" id="setor" value="<%= sqlData[0].setor %>">        
@@ -38,7 +38,7 @@
   </section>
 
   <!-- JS Scripts -->
-  <%- include('../../partials/_scripts') %>
+  <%- include('../../../partials/_scripts') %>
 </body>
 
 </html>

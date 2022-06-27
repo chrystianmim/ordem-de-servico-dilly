@@ -22,7 +22,7 @@
             <form id="formSetor" action="/pages/cadastroSetor" method="post">
               <div class="form-group">
                 <label for="setor">Setor</label>
-                <input type="text" class="form-control" name="setor" id="setor" placeholder="Insira o nome do setor">
+                <input type="text" class="form-control" name="setor" id="setor" placeholder="Insira o nome do setor" autofocus>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary" id="incluir">Incluir</button>
@@ -58,7 +58,7 @@
               <td><%= data.setor %></td>
               <td class="text-center">
                 <a href="\pages\ordem-servico\edit\editarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-pen-to-square me-1 text-body"></i></a>
-                <a href="\pages\delete\deletarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-trash-can text-body"></i></a>
+                <a href="\pages\ordem-servico\delete\deletarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-trash-can text-body"></i></a>
               </td>
             </tr> 
 
