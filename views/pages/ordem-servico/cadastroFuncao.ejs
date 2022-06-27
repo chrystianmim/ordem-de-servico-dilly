@@ -17,35 +17,70 @@
     <section>
       <div class="container">
         <p class="lead">Cadastro de funções</p>        
-        <form id="formFuncao" action="/pagCadastroFuncao" method="post">
+        <form id="formFuncao" action="/pages/ordem-servico/cadastroFuncao" method="post">
           <div class="row g-3">
             <div class="form-group col-md-6">
               <label for="funcao">Função</label>
               <input type="text" class="form-control" name="funcao" id="funcao" placeholder="Nome da função" autofocus>
             </div>
-
-            <!--
-              Validação para aceitar apenas números e já entregar no formato XXX-XX
-              Validação para submeter apenas quando os dois campos estiverem preenchidos
-            -->
-
             <div class="form-group col-md-6">
-              <label for="cbo">CBO</label> 
-              <input type="text" pattern="[0-9]+" class="form-control" name="cbo" id="cbo" placeholder="CBO da função">
+              <label for="cbo">CBO</label>
+              <input type="text" class="form-control" name="cbo" id="cbo" placeholder="CBO da função">
             </div>
           </div> <!-- row end -->
           <div class="form-group">
             <button type="submit" class="btn btn-primary" id="incluir">Incluir</button>
           </div>
           <!-- alert -->
-          <div class="alert alert-danger alert-size d-none" id="erro">
+          <div class="alert alert-danger alert-size d-none" id="erroFuncao">
             <strong>Atenção!</strong> Digite o nome da função.
+          </div>
+          <div class="alert alert-danger alert-size d-none" id="erroCbo">
+            <strong>Atenção!</strong> Digite o número do CBO.
           </div>
         </form>
         <hr>
-        <p class="lead">Funções cadastradas</p>
-        # incluir tabela com funções cadastradas #
-      </div>
+        <p class="lead">Setores cadastrados</p>
+        <table class="table table-striped table-hover">
+          <thead class="table-light">
+            <tr>
+              <th class="col-1 text-center" scope="col">#</th>
+              <th scope="col">Setor</th>
+              <th scope="col">CBO</th>
+              <th class="col-1 text-center" scope="col">Ações</th>
+            </tr>
+          </thead>
+        
+          <tbody>
+        
+            <% if (sqlData.lenght !=0) {
+                let i=1;
+                sqlData.forEach((data)=> {
+              %>
+        
+              <tr>
+                <th class="text-center" scope="row">
+                  <%= i %>
+                </th>
+                <td> <%= data.funcao %> </td>
+                <td> <%= data.cbo %> </td>
+                <td class="text-center">
+                  <a href="\pages\ordem-servico\edit\editarFuncao?idFuncao=<%= data.id %>"><i
+                      class="fa-regular fa-pen-to-square me-1 text-body"></i></a>
+                  <a href="\pages\ordem-servico\delete\deletarFuncao?idFuncao=<%= data.id %>"><i
+                      class="fa-regular fa-trash-can text-body"></i></a>
+                </td>
+              </tr>
+        
+              <% i++; }); %>
+                <% } else { %>
+        
+                  <tr>
+                    <td colspan="3">Não há setores cadastrados</td>
+                  </tr>
+        
+                  <% }; %>
+          </tbody>
     </section>
 
     <!-- Footer -->

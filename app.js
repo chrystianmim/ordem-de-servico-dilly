@@ -41,10 +41,10 @@ app.get("/pages/ordem-servico/cadastroSetor", (req, res) => {
   db.query(sql, (err, data) => {
     if (err) throw err;
     res.render("pages/ordem-servico/cadastroSetor", {sqlData: data});
-  });  
+  });
 });
 
-app.get("/pages/ordem-servico/edit/editarSetor", (req, res) => {
+app.get("/pages/ordem-servico/edit/editarSetor", (req, res) => { // update query
   let idSetor = req.query.idSetor;
   let sql = (`SELECT setor FROM tb_setores WHERE id=${idSetor}`);
   db.query(sql, (err, data) => {
@@ -57,7 +57,23 @@ app.get("/pages/ordem-servico/edit/editarSetor", (req, res) => {
 });
 
 app.get("/pages/ordem-servico/cadastroFuncao", (req, res) => {
-  res.render("pages/ordem-servico/cadastroFuncao");
+  let sql = "SELECT * FROM tb_funcoes ORDER BY `funcao` asc";
+  db.query(sql, (err, data) => {
+    if (err) throw err;
+    res.render("pages/ordem-servico/cadastroFuncao", { sqlData: data });
+  });
+});
+
+app.get("/pages/ordem-servico/edit/editarFuncao", (req, res) => { // update query
+  let idFuncao = req.query.idFuncao;
+  let sql = (`SELECT funcao, cbo FROM tb_funcoes WHERE id=${idFuncao}`);
+  db.query(sql, (err, data) => {
+    if (err) throw err;
+    res.render("pages/ordem-servico/edit/editarFuncao", {
+      sqlData: data,
+      idFuncao: idFuncao
+    });
+  });
 });
 
 app.get("/pages/cadastroOrdem", (req, res) => {
@@ -72,19 +88,19 @@ app.get("/pages/emitirOrdem", (req, res) => {
 
 // SQL create queries ###############
 
-app.post("/pages/cadastroSetor", (req, res) => {
+app.post("/pages/ordem-servico/cadastroSetor", (req, res) => {
   let setor = req.body.setor;
   setor = setor.toUpperCase(); // nome do setor para uppercase
   db.query(`INSERT INTO tb_setores(setor) VALUES ("${setor}")`);
   res.redirect("cadastroSetor");
 })
 
-app.post("/pages/cadastro/cadastroFuncao.html", (req, res) => {
+app.post("/pages/ordem-servico/cadastroFuncao", (req, res) => {
   let funcao = req.body.funcao;
+  funcao = funcao.toUpperCase(); // nome da funcao para uppercase
   let cbo = req.body.cbo;
-  console.log(funcao);
-  console.log(cbo);
-  res.sendFile(__dirname + "/public/pages/cadastro/cadastroFuncao.html");
+  db.query(`INSERT INTO tb_funcoes (funcao, cbo) VALUES ("${funcao}", "${cbo}")`);
+  res.redirect("cadastroFuncao");
 })
 
 // ##########################################
@@ -100,7 +116,16 @@ app.post("/pages/ordem-servico/edit/editarSetor", (req, res) => { // update seto
   let idSetor = req.query.idSetor;
   setor = setor.toUpperCase(); // nome do setor para uppercase
   db.query(`UPDATE tb_setores SET setor = ("${setor}") WHERE id=("${idSetor}")`);
-  res.redirect("../../../pages/cadastroSetor");
+  res.redirect("../../../pages/ordem-servico/cadastroSetor");
+})
+
+app.post("/pages/ordem-servico/edit/editarFuncao", (req, res) => { // update funcao
+  let funcao = req.body.funcao;
+  let cbo = req.body.cbo;
+  let idFuncao = req.query.idFuncao;
+  funcao = funcao.toUpperCase(); // nome da funcao para uppercase
+  db.query(`UPDATE tb_funcoes SET funcao = ("${funcao}"), cbo = ("${cbo}") WHERE id=("${idFuncao}")`);
+  res.redirect("../../../pages/ordem-servico/cadastroFuncao");
 })
 
 // ##########################################
@@ -110,7 +135,13 @@ app.post("/pages/ordem-servico/edit/editarSetor", (req, res) => { // update seto
 app.get("/pages/ordem-servico/delete/deletarSetor", (req, res) => { // delete setor
   let idSetor = req.query.idSetor;
   db.query(`DELETE FROM tb_setores WHERE id=("${idSetor}")`);
-  res.redirect("../../../pages/cadastroSetor");
+  res.redirect("../../../pages/ordem-servico/cadastroSetor");
+})
+
+app.get("/pages/ordem-servico/delete/deletarFuncao", (req, res) => { // delete funcao
+  let idFuncao = req.query.idFuncao;
+  db.query(`DELETE FROM tb_funcoes WHERE id=("${idFuncao}")`);
+  res.redirect("../../../pages/ordem-servico/cadastroFuncao");
 })
 
 // ##########################################
