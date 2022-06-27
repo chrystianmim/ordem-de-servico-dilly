@@ -41,9 +41,12 @@ $('#formFuncao').submit(function () { // função submit do jQuery direto no for
 
 // validação e formatação do campo cbo
 
-// FAZER USANDO MASK
-/* var cbo = document.querySelector("#cbo");
-cbo.addEventListener('keyup', function (event) {
-  var n = this.value;
-  cbo.value = n.mask("0000-00").toLocaleString();
-}, false); */
+// FAZER USANDO MASK USANDO CLEAVE.JS
+var cbo = document.querySelector("#cbo");
+var maskOptions = { mask: '0000[-00]'};
+var mask = IMask(cbo, maskOptions)
+cbo.addEventListener('keydown', function (event) {
+  var cbo = document.querySelector("#cbo");
+var maskOptions = { mask: '0000[-00]'};
+var mask = IMask(cbo, maskOptions)
+}, false);

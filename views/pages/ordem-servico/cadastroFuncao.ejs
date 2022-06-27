@@ -12,7 +12,7 @@
 
   <body>
     <header class="p-3 bg-dark text-white" style="padding: 10px !important">
-      <%- include('../partials/_header') %>
+      <%- include('../../partials/_header') %>
     </header>
     <section>
       <div class="container">
@@ -21,7 +21,7 @@
           <div class="row g-3">
             <div class="form-group col-md-6">
               <label for="funcao">Função</label>
-              <input type="text" class="form-control" name="funcao" id="funcao" placeholder="Nome da função">
+              <input type="text" class="form-control" name="funcao" id="funcao" placeholder="Nome da função" autofocus>
             </div>
 
             <!--
@@ -49,7 +49,7 @@
     </section>
 
     <!-- Footer -->
-    <!-- <%- include('../partials/_footer') %> -->
+    <!-- <%# include('../partials/_footer') %> -->
     
     <!-- JS Scripts -->
     <%- include('../../partials/_scripts') %>

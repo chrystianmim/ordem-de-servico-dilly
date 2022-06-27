@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
   res.render("pages/index");
 });
 
-app.get("/pages/cadastroSetor", (req, res) => {
+app.get("/pages/ordem-servico/cadastroSetor", (req, res) => {
   let sql = "SELECT * FROM tb_setores ORDER BY `setor` asc";
   db.query(sql, (err, data) => {
     if (err) throw err;
@@ -56,8 +56,8 @@ app.get("/pages/ordem-servico/edit/editarSetor", (req, res) => {
   });
 });
 
-app.get("/pages/cadastroFuncao", (req, res) => {
-  res.render("pages/cadastroFuncao");
+app.get("/pages/ordem-servico/cadastroFuncao", (req, res) => {
+  res.render("pages/ordem-servico/cadastroFuncao");
 });
 
 app.get("/pages/cadastroOrdem", (req, res) => {
