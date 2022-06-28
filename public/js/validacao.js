@@ -1,5 +1,4 @@
 // validação para formulário de cadastro de setor;
-
 $('#formSetor').submit(function() { // função submit do jQuery direto no form
   let setor = document.querySelector('#setor');
   let erro = document.querySelector('#erro');
