@@ -91,11 +91,19 @@ app.get("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   });  
 });
 
-app.get("/pages/ordem-servico/cadastroOrdem/cbo", (req, res) => {  
+app.get("/pages/ordem-servico/cadastroOrdem/funcoesData", (req, res) => {  
   let sqlFuncao = "SELECT * FROM tb_funcoes ORDER BY `funcao` asc";
   db.query(sqlFuncao, (err, data) => {
     if (err) throw err;
     res.send({ dbFuncoes: data });
+  });
+});
+
+app.get("/pages/ordem-servico/cadastroOrdem/setoresData", (req, res) => {
+  let sqlSetor = "SELECT * FROM tb_setores ORDER BY `setor` asc";
+  db.query(sqlSetor, (err, data) => {
+    if (err) throw err;
+    res.send({ dbSetores: data });
   });
 });
 
@@ -120,6 +128,23 @@ app.post("/pages/ordem-servico/cadastroFuncao", (req, res) => {
   let cbo = req.body.cbo;
   db.query(`INSERT INTO tb_funcoes (funcao, cbo) VALUES ("${funcao}", "${cbo}")`);
   res.redirect("cadastroFuncao");
+})
+
+app.post("/pages/ordem-servico/cadastroOrdem", (req, res) => {
+  // captura dados do formulario
+  let setor = req.body.setor;
+  let funcao = req.body.funcao;
+  let cbo = req.body.cbo;
+  let descFuncao = req.body.descFuncao;
+  let riscoAss = req.body.riscoAss;
+  let episRec = req.body.episRec;
+  let medidasPrev = req.body.medidasPrev;
+  let procAcidente = req.body.procAcidente;
+  let obs = req.body.obs;
+  let termoResp = req.body.funcao;
+  
+  /* db.query(`INSERT INTO tb_ordens (funcao, cbo) VALUES ("${funcao}", "${cbo}")`); */
+  res.redirect("cadastroOrdem");
 })
 
 // ##########################################

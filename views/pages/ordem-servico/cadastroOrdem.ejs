@@ -18,7 +18,7 @@
     <section>
       <div class="container">
         <p class="lead">Cadastro de Ordem de Serviço de Segurança</p>
-        <form id="formCadOrdem" action="/pagCadastroFuncao" method="post">
+        <form id="formCadOrdem" action="/pages/ordem-servico/cadastroOrdem" method="post">
           <div class="row g-3">
             <div class="form-group col-md-4">
               <label for="setor">Setor</label>
@@ -39,7 +39,7 @@
               <label for="funcao">Função</label>
               <select class="form-control" name="funcao" id="funcao">
                 <option value="" disabled selected>Selecione</option>
-                <% 
+                <%
                   if (dbFuncoes != 0) {
                     dbFuncoes.forEach((data) => {
                       %> <option value="<%- data.funcao %>"><%- data.funcao %></option> <%
