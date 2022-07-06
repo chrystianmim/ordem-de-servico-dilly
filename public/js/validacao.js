@@ -48,3 +48,37 @@ var cleave = new Cleave('#cbo', {
   delimiter: '-',
   blocks: [4, 2],
 });
+
+/* async function fetchData() {
+  let response = await fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem');
+  let data = await response.json();
+  let status = data.status()
+  console.log(data);
+  console.log(status);
+  console.log("BORA MEU IRMAO");
+} */
+
+// consumindo API fetch() buscando dados
+let cboData = "aew";
+async function fetchData() {
+  await fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem/cbo')
+    .then(response => response.json())
+    .then((data) => cboData = data.dbFuncoes);
+}
+
+fetchData();
+console.log(cboData);
+
+
+/* let campoFuncao = document.getElementById('funcao');
+campoFuncao.addEventListener("change", async () => {
+  let cboData = "";
+  await fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem/cbo')
+    .then(response => response.json())
+    .then((data) => cboData = data.dbFuncoes);  
+  console.log(cboData);
+}); */
+
+/* fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem/cbo')
+  .then(response => response.json())
+  .then(data => cboData = data.dbFuncoes); */

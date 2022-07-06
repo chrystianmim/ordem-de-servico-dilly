@@ -86,9 +86,17 @@ app.get("/pages/ordem-servico/cadastroOrdem", (req, res) => {
       res.render("pages/ordem-servico/cadastroOrdem", {
         dbSetores: data1,
         dbFuncoes: data2
-       });
+      });
     });
   });  
+});
+
+app.get("/pages/ordem-servico/cadastroOrdem/cbo", (req, res) => {  
+  let sqlFuncao = "SELECT * FROM tb_funcoes ORDER BY `funcao` asc";
+  db.query(sqlFuncao, (err, data) => {
+    if (err) throw err;
+    res.send({ dbFuncoes: data });
+  });
 });
 
 app.get("/pages/emitirOrdem", (req, res) => {
