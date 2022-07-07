@@ -81,10 +81,11 @@ campoFuncao.addEventListener("change", () => {
 });
 
 // validação para formulário de cadastro de ordem de serviço;
-$('#formCadOrdem').submit(function() { // função submit do jQuery direto no form
-  // captura campos
+$('#formCadOrdem').submit(function () { // função submit do jQuery direto no form
+  // captura campos  
   let inputSetor = document.getElementById('setor');
   let inputFuncao = document.getElementById('funcao');
+  let inputCbo = document.getElementById('cbo');
   let inputDescFuncao = document.getElementById('descFuncao');
   let inputRiscosAss = document.getElementById('riscosAss');
   let inputEpisRec = document.getElementById('episRec');
@@ -98,32 +99,21 @@ $('#formCadOrdem').submit(function() { // função submit do jQuery direto no fo
 
   // inicia a função tornando o erro invisível
   erro.classList.add('d-none');
-
-  if (inputSetor.value !== '') {
-    break
-  } else if (inputFuncao.value !== '') {
-    return true
-  } else if (inputDescFuncao.value !== '') {
-    return true
-  } else if (inputRiscosAss.value !== '') {
-    return true
-  } else if (inputEpisRec.value !== '') {
-    return true
-  } else if (inputMedidasPrev.value !== '') {
-    return true
-  } else if (inputProcAcidente.value !== '') {
-    return true
-  } else if (inputObs.value !== '') {
-    return true
-  } else if (inputTermoResp.value !== '') {
-    return true
+  
+  if (inputSetor.value !== '') {  
+  } if (inputFuncao.value !== '') {
+  } if (inputDescFuncao.value !== '') {
+  } if (inputRiscosAss.value !== '') {
+  } if (inputEpisRec.value !== '') {
+  } if (inputMedidasPrev.value !== '') {
+  } if (inputProcAcidente.value !== '') {
+  } if (inputObs.value !== '') {
+  } if (inputTermoResp.value !== '') {
   } else {
     erro.classList.remove('d-none');
     return false
   }
-
-  return false
-
+  
   // atribuir o id da função e cbo aos respectivos inputs
   for (let i = 0; i < funcoesData.length; i++) {
     if (funcoesData[i].funcao === inputFuncao.value) {
@@ -131,7 +121,7 @@ $('#formCadOrdem').submit(function() { // função submit do jQuery direto no fo
       let option = document.createElement('option');
       option.value = funcoesData[i].id;
       inputFuncao.add(option);
-      inputFuncao.value = funcoesData[i].id;
+      inputFuncao.value = funcoesData[i].id;      
       // atribuir o id ao cbo.value
       inputCbo.value = funcoesData[i].id;
     }
@@ -146,14 +136,9 @@ $('#formCadOrdem').submit(function() { // função submit do jQuery direto no fo
       inputSetor.add(option);
       // atribuir o id ao setor.value
       inputSetor.value = setoresData[i].id;
+      console.log(inputSetor)
     }
   };
 
-  /* if (cbo.value == '') { // mostra erro se o valor do CBO estiver vazio
-    erroCbo.classList.remove('d-none');
-    cbo.focus();
-    return false
-  } */
-
-  return false
+  return true
 });

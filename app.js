@@ -120,7 +120,7 @@ app.post("/pages/ordem-servico/cadastroSetor", (req, res) => {
   setor = setor.toUpperCase(); // nome do setor para uppercase
   db.query(`INSERT INTO tb_setores(setor) VALUES ("${setor}")`);
   res.redirect("cadastroSetor");
-})
+});
 
 app.post("/pages/ordem-servico/cadastroFuncao", (req, res) => {
   let funcao = req.body.funcao;
@@ -128,7 +128,7 @@ app.post("/pages/ordem-servico/cadastroFuncao", (req, res) => {
   let cbo = req.body.cbo;
   db.query(`INSERT INTO tb_funcoes (funcao, cbo) VALUES ("${funcao}", "${cbo}")`);
   res.redirect("cadastroFuncao");
-})
+});
 
 app.post("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   // captura dados do formulario
@@ -146,7 +146,7 @@ app.post("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   db.query(`INSERT INTO tb_ordens (setor_id, funcao_id, cbo_id, desc_funcao, riscos_atividade, epis, medidas_prev, procedimento, obs, termo_resp) VALUES ("${setor}", "${funcao}", "${cbo}", "${descFuncao}", "${riscosAss}", "${episRec}", "${medidasPrev}", "${procAcidente}", "${obs}", "${termoResp}")`);
 
   res.redirect("cadastroOrdem");
-})
+});
 
 // ##########################################
 
