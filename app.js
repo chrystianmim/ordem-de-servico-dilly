@@ -134,16 +134,17 @@ app.post("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   // captura dados do formulario
   let setor = req.body.setor;
   let funcao = req.body.funcao;
-  let cbo = req.body.cbo;
+  let cbo = req.body.funcao;
   let descFuncao = req.body.descFuncao;
-  let riscoAss = req.body.riscoAss;
+  let riscosAss = req.body.riscosAss;
   let episRec = req.body.episRec;
   let medidasPrev = req.body.medidasPrev;
   let procAcidente = req.body.procAcidente;
   let obs = req.body.obs;
-  let termoResp = req.body.funcao;
+  let termoResp = req.body.termoResp;
   
-  /* db.query(`INSERT INTO tb_ordens (funcao, cbo) VALUES ("${funcao}", "${cbo}")`); */
+  db.query(`INSERT INTO tb_ordens (setor_id, funcao_id, cbo_id, desc_funcao, riscos_atividade, epis, medidas_prev, procedimento, obs, termo_resp) VALUES ("${setor}", "${funcao}", "${cbo}", "${descFuncao}", "${riscosAss}", "${episRec}", "${medidasPrev}", "${procAcidente}", "${obs}", "${termoResp}")`);
+
   res.redirect("cadastroOrdem");
 })
 
