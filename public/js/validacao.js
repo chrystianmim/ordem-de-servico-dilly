@@ -192,3 +192,18 @@ $('#formCadOrdem').submit(function () { // função submit do jQuery direto no f
 
   return true
 });
+
+// mostrar campo de sucesso para cadastroOrdem
+
+let sucesso = document.getElementById('sucesso');
+
+// torna alerta de sucesso não visível
+sucesso.classList.add('d-none');
+
+// caso sucesso, mostra alerta de sucesso
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const success = urlParams.get('success');
+if (success == 1) {
+  sucesso.classList.remove('d-none');
+};
