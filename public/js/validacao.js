@@ -93,27 +93,67 @@ $('#formCadOrdem').submit(function () { // função submit do jQuery direto no f
   let inputProcAcidente = document.getElementById('procAcidente');
   let inputObs = document.getElementById('obs');
   let inputTermoResp = document.getElementById('termoResp');
-  let erro = document.getElementById('erro');
+  let erro = document.getElementById('erro');  
  
   // validação dos campos para mostrar ou não o erro
 
   // inicia a função tornando o erro invisível
   erro.classList.add('d-none');
   
-  if (inputSetor.value !== '') {  
-  } if (inputFuncao.value !== '') {
-  } if (inputDescFuncao.value !== '') {
-  } if (inputRiscosAss.value !== '') {
-  } if (inputEpisRec.value !== '') {
-  } if (inputMedidasPrev.value !== '') {
-  } if (inputProcAcidente.value !== '') {
-  } if (inputObs.value !== '') {
-  } if (inputTermoResp.value !== '') {
-  } else {
+  if (inputSetor.value == '') {
     erro.classList.remove('d-none');
+    inputSetor.focus()
+    return false     
+  } 
+
+  if (inputFuncao.value == '') {
+    erro.classList.remove('d-none');
+    inputFuncao.focus()
+    return false      
+  }
+
+  if (inputDescFuncao.value == '') {
+    erro.classList.remove('d-none');
+    inputDescFuncao.focus()
+    return false     
+  }
+
+  if (inputRiscosAss.value == '') {
+    erro.classList.remove('d-none');
+    inputRiscosAss.focus()
     return false
   }
-  
+
+  if (inputEpisRec.value == '') {
+    erro.classList.remove('d-none');
+    inputEpisRec.focus()
+    return false
+  }
+
+  if (inputMedidasPrev.value == '') {
+    erro.classList.remove('d-none');
+    inputMedidasPrev.focus()
+    return false
+  }
+
+  if (inputProcAcidente.value == '') {
+    erro.classList.remove('d-none');
+    inputProcAcidente.focus()
+    return false
+  }
+
+  if (inputObs.value == '') {
+    erro.classList.remove('d-none');
+    inputObs.focus()
+    return false
+  }
+
+  if (inputTermoResp.value == '') {
+    erro.classList.remove('d-none');
+    inputTermoResp.focus()
+    return false
+  }
+   
   // atribuir o id da função e cbo aos respectivos inputs
   for (let i = 0; i < funcoesData.length; i++) {
     if (funcoesData[i].funcao === inputFuncao.value) {
@@ -136,9 +176,19 @@ $('#formCadOrdem').submit(function () { // função submit do jQuery direto no f
       inputSetor.add(option);
       // atribuir o id ao setor.value
       inputSetor.value = setoresData[i].id;
-      console.log(inputSetor)
     }
   };
+
+  /* console.log(inputSetor.value)
+  console.log(inputFuncao.value)
+  console.log(inputCbo.value)
+  console.log(inputDescFuncao.value)
+  console.log(inputRiscosAss.value)
+  console.log(inputEpisRec.value)
+  console.log(inputMedidasPrev.value)
+  console.log(inputProcAcidente.value)
+  console.log(inputObs.value)
+  console.log(inputTermoResp.value) */
 
   return true
 });

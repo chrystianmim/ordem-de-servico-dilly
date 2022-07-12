@@ -142,10 +142,16 @@ app.post("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   let procAcidente = req.body.procAcidente;
   let obs = req.body.obs;
   let termoResp = req.body.termoResp;
-  
-  db.query(`INSERT INTO tb_ordens (setor_id, funcao_id, cbo_id, desc_funcao, riscos_atividade, epis, medidas_prev, procedimento, obs, termo_resp) VALUES ("${setor}", "${funcao}", "${cbo}", "${descFuncao}", "${riscosAss}", "${episRec}", "${medidasPrev}", "${procAcidente}", "${obs}", "${termoResp}")`);
 
-  res.redirect("cadastroOrdem");
+  query = `INSERT INTO tb_ordens (setor_id, funcao_id, cbo_id, desc_funcao, riscos_atividade, epis, medidas_prev, procedimento, obs, termo_resp) VALUES ("${setor}", "${funcao}", "${cbo}", "${descFuncao}", "${riscosAss}", "${episRec}", "${medidasPrev}", "${procAcidente}", "${obs}", "${termoResp}")`;
+  
+  db.query(query, (err) => {
+    if (err) throw err;
+    res.redirect("cadastroOrdem?success=1");
+  }) ;
+
+  // ENVIAR QUERY STRING SUCCSESS PARA FRONT END https://www.sitepoint.com/get-url-parameters-with-javascript/
+
 });
 
 // ##########################################
