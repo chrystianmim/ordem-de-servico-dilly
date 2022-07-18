@@ -79,7 +79,7 @@ app.get("/pages/ordem-servico/edit/editarFuncao", (req, res) => { // update quer
 app.get("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   let sqlSetor = "SELECT * FROM tb_setores ORDER BY `setor` asc";
   let sqlFuncao = "SELECT * FROM tb_funcoes ORDER BY `funcao` asc";
-  let sqlOrdem = "SELECT * FROM tb_ordens ORDER BY `setor_id` asc";
+  let sqlOrdem = "SELECT setor, funcao, cbo FROM tb_ordens INNER JOIN tb_setores ON tb_ordens.setor_id = tb_setores.id INNER JOIN tb_funcoes ON tb_ordens.funcao_id = tb_funcoes.id ORDER BY `setor` asc";
   db.query(sqlSetor, (err, data1) => {
     if (err) throw err;
     db.query(sqlFuncao, (err, data2) => {

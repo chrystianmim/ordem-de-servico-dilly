@@ -120,8 +120,9 @@
           <thead class="table-light">
             <tr>
               <th class="col-1 text-center" scope="col">#</th>
-              <th class="col-5" scope="col">Setor</th>
+              <th class="col-4" scope="col">Setor</th>
               <th class="col-5" scope="col">Função</th>
+              <th class="col-1" scope="col">CBO</th>
               <th class="col-1 text-center" scope="col">Ações</th>
             </tr>
           </thead>
@@ -135,8 +136,9 @@
 
             <tr>        
               <th class="text-center" scope="row"><%= i %></th>
-              <td><%= data.setor_id %></td>
-              <td><%= data.funcao_id %></td>
+              <td><%= data.setor %></td>
+              <td><%= data.funcao %></td>
+              <td><%= data.cbo %></td>
               <td class="text-center">
                 <a href="\pages\ordem-servico\edit\editarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-pen-to-square me-1 text-body"></i></a>
                 <a href="\pages\ordem-servico\delete\deletarSetor?idSetor=<%= data.id %>"><i class="fa-regular fa-trash-can text-body"></i></a>
