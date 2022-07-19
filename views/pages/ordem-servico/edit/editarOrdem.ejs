@@ -24,30 +24,26 @@
               <label for="setor">Setor</label>
               <select class="form-control" name="setor" id="setor" autofocus>
                 <option value="" disabled selected>Selecione</option>
-                <%
-                  if (dbSetores != 0) {
-                    dbSetores.forEach((data) => {
-                      %> <option value="<%- data.setor %>"><%- data.setor %></option> <%
-                    });
-                  } else {
-                    %> <option value="NODATA">Não há setores</option> <%
-                  };
-                %>
+                <% if (dbSetores !=0) { dbSetores.forEach((data)=> {
+                  %> <option value="<%- data.setor %>">
+                    <%- data.setor %>
+                  </option>
+                  <% }); } else { %>
+                    <option value="NODATA">Não há setores</option>
+                    <% }; %>
               </select>
             </div>
             <div class="form-group col-md-4">
               <label for="funcao">Função</label>
               <select class="form-control" name="funcao" id="funcao">
                 <option value="" disabled selected>Selecione</option>
-                <%
-                  if (dbFuncoes != 0) {
-                    dbFuncoes.forEach((data) => {
-                      %> <option value="<%- data.funcao %>"><%- data.funcao %></option> <%
-                    });
-                  } else {
-                      %> <option value="NODATA">Não há funções</option> <%
-                  };
-                %>
+                <% if (dbFuncoes !=0) { dbFuncoes.forEach((data)=> {
+                  %> <option value="<%- data.funcao %>">
+                    <%- data.funcao %>
+                  </option>
+                  <% }); } else { %>
+                    <option value="NODATA">Não há funções</option>
+                    <% }; %>
               </select>
             </div>
             <div class="form-group col-md-4">
@@ -59,11 +55,13 @@
           <div class="row g-3 mt-1">
             <div class="form-group col-md-4">
               <label for="descFuncao">Descrição da função</label>
-              <textarea class="form-control" name="descFuncao" id="descFuncao" rows="5" placeholder="Insira a descrição para a função"></textarea>
+              <textarea class="form-control" name="descFuncao" id="descFuncao" rows="5"
+                placeholder="Insira a descrição para a função"></textarea>
             </div>
             <div class="form-group col-md-4">
               <label for="riscosAss">Riscos associados à atividade</label>
-              <textarea class="form-control" name="riscosAss" id="riscosAss" rows="5" placeholder="Insira os riscos associados à função"></textarea>
+              <textarea class="form-control" name="riscosAss" id="riscosAss" rows="5"
+                placeholder="Insira os riscos associados à função"></textarea>
             </div>
             <div class="form-group col-md-4">
               <label for="episRec">EPIs recomendados</label>
@@ -88,8 +86,7 @@
           <div class="row g-3 mt-1">
             <div class="form-group col-md-12">
               <label for="obs">Observações</label>
-              <textarea class="form-control" name="obs" id="obs" rows="5"
-                placeholder="Observações"></textarea>
+              <textarea class="form-control" name="obs" id="obs" rows="5" placeholder="Observações"></textarea>
             </div>
           </div> <!-- row 4 end -->
 
@@ -128,31 +125,38 @@
           </thead>
           <tbody>
 
-            <% 
-              if (dbOrdens.length != 0) {
-                let i = 1;
-                dbOrdens.forEach((data) => {
-            %>
-
-            <tr>        
-              <th class="text-center" scope="row"><%= i %></th>
-              <td><%= data.setor %></td>
-              <td><%= data.funcao %></td>
-              <td><%= data.cbo %></td>
-              <td class="text-center">
-                <a href="\pages\ordem-servico\edit\editarSetor?idOrdem=<%= data.id %>"><i class="fa-regular fa-pen-to-square me-1 text-body"></i></a>
-                <a href="\pages\ordem-servico\delete\deletarSetor?idOrdem=<%= data.id %>"><i class="fa-regular fa-trash-can text-body"></i></a>
-              </td>
-            </tr> 
-
-            <% i++; }); %>
-            <% } else { %> 
+            <% if (dbOrdens.length !=0) { let i=1; dbOrdens.forEach((data)=> {
+              %>
 
               <tr>
-                <td colspan="3">Não há ordens cadastradas</td>
+                <th class="text-center" scope="row">
+                  <%= i %>
+                </th>
+                <td>
+                  <%= data.setor %>
+                </td>
+                <td>
+                  <%= data.funcao %>
+                </td>
+                <td>
+                  <%= data.cbo %>
+                </td>
+                <td class="text-center">
+                  <a href="\pages\ordem-servico\edit\editarSetor?dbOrdens=<%= data.id %>"><i
+                      class="fa-regular fa-pen-to-square me-1 text-body"></i></a>
+                  <a href="\pages\ordem-servico\delete\deletarSetor?dbOrdens=<%= data.id %>"><i
+                      class="fa-regular fa-trash-can text-body"></i></a>
+                </td>
               </tr>
 
-            <% }; %>         
+              <% i++; }); %>
+                <% } else { %>
+
+                  <tr>
+                    <td colspan="3">Não há ordens cadastradas</td>
+                  </tr>
+
+                  <% }; %>
           </tbody>
         </table>
       </div>
@@ -166,4 +170,3 @@
   </body>
 
 </html>
-

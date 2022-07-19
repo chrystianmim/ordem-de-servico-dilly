@@ -64,7 +64,7 @@ app.get("/pages/ordem-servico/cadastroFuncao", (req, res) => {
   });
 });
 
-app.get("/pages/ordem-servico/edit/editarFuncao", (req, res) => { // update query
+app.get("/pages/ordem-servico/edit/editarFuncao", (req, res) => {
   let idFuncao = req.query.idFuncao;
   let sql = (`SELECT funcao, cbo FROM tb_funcoes WHERE id=${idFuncao}`);
   db.query(sql, (err, data) => {
@@ -79,7 +79,7 @@ app.get("/pages/ordem-servico/edit/editarFuncao", (req, res) => { // update quer
 app.get("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   let sqlSetor = "SELECT * FROM tb_setores ORDER BY `setor` asc";
   let sqlFuncao = "SELECT * FROM tb_funcoes ORDER BY `funcao` asc";
-  let sqlOrdem = "SELECT setor, funcao, cbo FROM tb_ordens INNER JOIN tb_setores ON tb_ordens.setor_id = tb_setores.id INNER JOIN tb_funcoes ON tb_ordens.funcao_id = tb_funcoes.id ORDER BY `setor` asc";
+  let sqlOrdem = "SELECT tb_ordens.id, setor, funcao, cbo FROM tb_ordens INNER JOIN tb_setores ON tb_ordens.setor_id = tb_setores.id INNER JOIN tb_funcoes ON tb_ordens.funcao_id = tb_funcoes.id ORDER BY `setor` asc";
   db.query(sqlSetor, (err, data1) => {
     if (err) throw err;
     db.query(sqlFuncao, (err, data2) => {
@@ -96,7 +96,8 @@ app.get("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   });  
 });
 
-app.get("/pages/ordem-servico/cadastroOrdem/funcoesData", (req, res) => {  
+// dados para inserir option no select de funcoes da página cadastroOrdem
+app.get("/pages/ordem-servico/cadastroOrdem/funcoesData", (req, res) => {
   let sqlFuncao = "SELECT * FROM tb_funcoes ORDER BY `funcao` asc";
   db.query(sqlFuncao, (err, data) => {
     if (err) throw err;
@@ -104,11 +105,24 @@ app.get("/pages/ordem-servico/cadastroOrdem/funcoesData", (req, res) => {
   });
 });
 
+// dados para inserir option no select de setores da página cadastroOrdem
 app.get("/pages/ordem-servico/cadastroOrdem/setoresData", (req, res) => {
   let sqlSetor = "SELECT * FROM tb_setores ORDER BY `setor` asc";
   db.query(sqlSetor, (err, data) => {
     if (err) throw err;
     res.send({ dbSetores: data });
+  });
+});
+
+app.get("/pages/ordem-servico/edit/editarOrdem", (req, res) => {
+  let idOrdem = req.query.idOrdem; //PAREI AQUI, CONSTRUINDO A QUERY PARA UPDATE DA ORDEM //
+  let sql = (`SELECT funcao, cbo FROM tb_funcoes WHERE id=${idFuncao}`);
+  db.query(sql, (err, data) => {
+    if (err) throw err;
+    res.render("pages/ordem-servico/edit/editarFuncao", {
+      sqlData: data,
+      idFuncao: idFuncao
+    });
   });
 });
 
@@ -176,6 +190,15 @@ app.post("/pages/ordem-servico/edit/editarSetor", (req, res) => { // update seto
 })
 
 app.post("/pages/ordem-servico/edit/editarFuncao", (req, res) => { // update funcao
+  let funcao = req.body.funcao;
+  let cbo = req.body.cbo;
+  let idFuncao = req.query.idFuncao;
+  funcao = funcao.toUpperCase(); // nome da funcao para uppercase
+  db.query(`UPDATE tb_funcoes SET funcao = ("${funcao}"), cbo = ("${cbo}") WHERE id=("${idFuncao}")`);
+  res.redirect("../../../pages/ordem-servico/cadastroFuncao");
+})
+
+app.post("/pages/ordem-servico/edit/editarOrdem", (req, res) => { // update ordem
   let funcao = req.body.funcao;
   let cbo = req.body.cbo;
   let idFuncao = req.query.idFuncao;
