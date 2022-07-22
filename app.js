@@ -115,13 +115,13 @@ app.get("/pages/ordem-servico/cadastroOrdem/setoresData", (req, res) => {
 });
 
 app.get("/pages/ordem-servico/edit/editarOrdem", (req, res) => {
-  let idOrdem = req.query.idOrdem; //PAREI AQUI, CONSTRUINDO A QUERY PARA UPDATE DA ORDEM //
-  let sql = (`SELECT funcao, cbo FROM tb_funcoes WHERE id=${idFuncao}`);
+  let idOrdem = req.query.idOrdem;
+  let sql = (`SELECT * FROM tb_ordens INNER JOIN tb_setores ON tb_ordens.setor_id = tb_setores.id INNER JOIN tb_funcoes ON tb_ordens.funcao_id = tb_funcoes.id WHERE tb_ordens.id=${idOrdem}`);
   db.query(sql, (err, data) => {
     if (err) throw err;
-    res.render("pages/ordem-servico/edit/editarFuncao", {
+    res.render("pages/ordem-servico/edit/editarOrdem", {
       sqlData: data,
-      idFuncao: idFuncao
+      idOrdem: idOrdem
     });
   });
 });
@@ -199,12 +199,21 @@ app.post("/pages/ordem-servico/edit/editarFuncao", (req, res) => { // update fun
 })
 
 app.post("/pages/ordem-servico/edit/editarOrdem", (req, res) => { // update ordem
-  let funcao = req.body.funcao;
-  let cbo = req.body.cbo;
-  let idFuncao = req.query.idFuncao;
-  funcao = funcao.toUpperCase(); // nome da funcao para uppercase
-  db.query(`UPDATE tb_funcoes SET funcao = ("${funcao}"), cbo = ("${cbo}") WHERE id=("${idFuncao}")`);
-  res.redirect("../../../pages/ordem-servico/cadastroFuncao");
+  // let setor = req.body.setor;
+  // let funcao = req.body.funcao;
+  // let cbo = req.body.funcao;
+  let descFuncao = req.body.descFuncao;
+  let riscosAss = req.body.riscosAss;
+  let episRec = req.body.episRec;
+  let medidasPrev = req.body.medidasPrev;
+  let procAcidente = req.body.procAcidente;
+  let obs = req.body.obs;
+  let termoResp = req.body.termoResp;
+  let idOrdem = req.query.idOrdem;
+  console.log(idOrdem)
+  console.log(descFuncao)
+  db.query(`UPDATE tb_ordens SET desc_funcao = ("${descFuncao}"), riscos_atividade = ("${riscosAss}"), epis = ("${episRec}"), medidas_prev = ("${medidasPrev}"), procedimento = ("${procAcidente}"), obs = ("${obs}"), termo_resp = ("${termoResp}") WHERE id=("${idOrdem}")`);
+  res.redirect("../../../pages/ordem-servico/cadastroOrdem");
 })
 
 // ##########################################
