@@ -30,7 +30,7 @@ app.use(express.static(__dirname + "/public"));
 // setting ejs as view engine
 app.set('view engine', 'ejs');
 
-// Routes ####################
+// GET Routes ####################
 
 app.get("/", (req, res) => {
   res.render("pages/index");
@@ -126,8 +126,8 @@ app.get("/pages/ordem-servico/edit/editarOrdem", (req, res) => {
   });
 });
 
-app.get("/pages/emitirOrdem", (req, res) => {
-  res.render("pages/emitirOrdem");
+app.get("/pages/ordem-servico/emitirOrdem", (req, res) => {
+  res.render("pages/ordem-servico/emitirOrdem");
 });
 
 // ###########################
@@ -210,8 +210,6 @@ app.post("/pages/ordem-servico/edit/editarOrdem", (req, res) => { // update orde
   let obs = req.body.obs;
   let termoResp = req.body.termoResp;
   let idOrdem = req.query.idOrdem;
-  console.log(idOrdem)
-  console.log(descFuncao)
   db.query(`UPDATE tb_ordens SET desc_funcao = ("${descFuncao}"), riscos_atividade = ("${riscosAss}"), epis = ("${episRec}"), medidas_prev = ("${medidasPrev}"), procedimento = ("${procAcidente}"), obs = ("${obs}"), termo_resp = ("${termoResp}") WHERE id=("${idOrdem}")`);
   res.redirect("../../../pages/ordem-servico/cadastroOrdem");
 })
@@ -230,6 +228,12 @@ app.get("/pages/ordem-servico/delete/deletarFuncao", (req, res) => { // delete f
   let idFuncao = req.query.idFuncao;
   db.query(`DELETE FROM tb_funcoes WHERE id=("${idFuncao}")`);
   res.redirect("../../../pages/ordem-servico/cadastroFuncao");
+})
+
+app.get("/pages/ordem-servico/delete/deletarOrdem", (req, res) => { // delete ordem
+  let idOrdem = req.query.idOrdem;
+  db.query(`DELETE FROM tb_ordens WHERE id=("${idOrdem}")`);
+  res.redirect("../../../pages/ordem-servico/cadastroOrdem");
 })
 
 // ##########################################
