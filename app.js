@@ -22,7 +22,7 @@ db.connect((err) => {
   console.log("DB connection success! ID: " + db.threadId);
 });
 
-// some settings
+// some other Express settings
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
@@ -30,7 +30,23 @@ app.use(express.static(__dirname + "/public"));
 // setting ejs as view engine
 app.set('view engine', 'ejs');
 
-// GET Routes ####################
+// ---------------------------------
+// ---------- GET Routes -----------
+// ---------------------------------
+
+// ROTA DE TESTE PARA PDF
+// ROTA DE TESTE PARA PDF
+// ROTA DE TESTE PARA PDF
+
+app.get("/pdf", async (req, res) => {  
+  async function getPdf() {
+    let pdfFile = await require("./pdf");
+    res.download('./tmp/OrdemDeServico.pdf');
+  }
+
+  getPdf();
+  
+});
 
 app.get("/", (req, res) => {
   res.render("pages/index");
