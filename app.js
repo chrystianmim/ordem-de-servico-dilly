@@ -38,14 +38,45 @@ app.set('view engine', 'ejs');
 // ROTA DE TESTE PARA PDF
 // ROTA DE TESTE PARA PDF
 
-app.get("/pdf", async (req, res) => {  
-  async function getPdf() {
-    let pdfFile = await require("./pdf");
-    res.download('./tmp/OrdemDeServico.pdf');
-  }
+app.get("/pdf", (req, res) => {  
 
-  getPdf();
-  
+///// TENTANDO CRIAR O PDF ANTES DE EXECUTAR O DOWNLOAD //////////////////////
+// VERIFICAR LINK ABAIXO DO METODO WATCHFILE
+// https://www.geeksforgeeks.org/node-js-fs-watchfile-method/?ref=lbp
+
+  const downloadPdf = new Promise((res, rej) => {    
+    const fs = require("fs");
+    const path = "./tmp/OrdemDeServico.pdf";
+    var fileExists = fs.existsSync(path);
+
+    if (fileExists) {
+      console.log("fileExists é" + fileExists + " no if true")
+      fs.unlinkSync(path);
+      const pdfFile = require("./pdf");
+      res("Requisição aceita");
+    } 
+    
+    if (!fileExists) {
+      console.log("fileExists é " + fileExists + " no if false antes do require")
+      const pdfFile = require("./pdf");
+      res("Requisição aceita");
+      fileExists = fs.existsSync(path);
+      console.log("fileExists é " + fileExists + " no if false depois do require")
+    }
+
+      rej("Requisição rejeitada");
+
+    console.log(fileExists + " no final da promise")
+  });  
+
+  downloadPdf
+    .then(() => {
+      res.download('./tmp/OrdemDeServico.pdf');
+    })
+    .catch((err) => {
+      if (err) throw err;
+    });
+
 });
 
 app.get("/", (req, res) => {
