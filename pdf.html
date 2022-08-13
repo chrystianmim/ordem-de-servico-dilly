@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <title>PDF Ordem de Serviço</title>
+  <style>
+
+    .documentBox {
+      width: 210mm;
+      height: 297mm;
+      /* border: 1px solid black; */
+      padding: 15mm;
+    }
+
+    .headerBox {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 10mm;
+    }
+
+    .belowHeaderBox {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 10mm;
+    }
+
+    .documentBodyBox {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      margin-bottom: 10mm;
+      flex: 1 0 auto;
+    }
+
+    .innerBoxProperties {
+      margin-bottom: 10mm;
+    }
+
+    .contentBox {
+      height: 237mm;
+    }
+
+    .footerBox {
+      width: 210mm;
+      height: 60mm;
+      flex-shrink: 0;
+      /* bottom: 0;
+      margin-top: auto;
+      margin-bottom: 10mm; */
+    }
+
+    .employeeInfo {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 10mm;
+    }
+
+    .signLine {
+      margin-bottom: 20mm;
+    }
+
+    .companyInfo {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="documentBox">
+    <div class="contentBox">
+      <div class="headerBox">
+        <div id="logo">Dilly Logo</div>
+        <div id="docTitle"><strong>ORDEM DE SERVIÇO <br>SEGURANÇA DO TRABALHO</strong></div>
+        <div id="safetyLogo">Safety Logo</div>
+      </div>
+
+      <div class="belowHeaderBox">
+        <div id="setor"><strong>Setor: </strong>{setor name}</div>
+        <div id="funcao"><strong>Função: </strong>{funcao title}</div>
+        <div id="cbo"><strong>CBO: </strong>{cbo number}</div>
+      </div>
+
+      <div class="documentBodyBox">
+        <div class="innerBoxProperties">
+          <div id="descFuncaoTitle"><strong>Descrição da função:</strong></div>
+          <div id="descFuncaoContent">{descFuncao}</div>
+        </div>
+
+        <div class="innerBoxProperties">
+          <div id="agentesAssTitle"><strong>Agentes associados às atividades:</strong></div>
+          <div id="agentesAssContent">{agentesAss}</div>
+        </div>
+
+        <div class="innerBoxProperties">
+          <div id="episRecTitle"><strong>EPI's recomendados:</strong></div>
+          <div id="episRecContent">{episRec}</div>
+        </div>
+
+        <div class="innerBoxProperties">
+          <div id="recomendacoesTitle"><strong>Recomendações gerais:</strong></div>
+          <div id="recomendacoesContent">{recomendacoes}</div>
+        </div>
+
+        <div class="innerBoxProperties">
+          <div id="procAcidenteTitle"><strong>Procedimento em caso de acidente:</strong></div>
+          <div id="procAcidenteContent">{procAcidente}</div>
+        </div>
+
+        <div class="innerBoxProperties">
+          <div id="obsTitle"><strong>Demais observações:</strong></div>
+          <div id="obsContent">{obs}</div>
+        </div>
+
+        <div class="innerBoxProperties">
+          <div id="declaracaoTitle"><strong>Declaração:</strong></div>
+          <div id="declaracaoContent">{declaracao}</div>
+        </div>      
+      </div>
+    </div> <!-- contentBox end -->
+
+    <div class="footerBox">
+      <div class="employeeInfo">
+        <div id="codigo"><strong>CÓDIGO: </strong>{codigo do funcionario}</div>
+        <div id="nome"><strong>NOME: </strong>{nome do funcionario}</div>
+        <div id="data"><strong>DATA: </strong>{data}</div>
+      </div>
+
+      <div class="signLine">
+        <div id="assinatura"><strong>ASSINATURA: </strong>____________________________________________</div>
+      </div>
+
+      <div class="companyInfo">
+        <p><strong>DILLY NORDESTE INDÚSTRIA DE CALÇADOS LTDA.</strong><br>
+        AV. BIICA BASÍLIO, 140, BAIRRO RAIMUNDO FERNANDES <br>
+        BREJO SANTO/CE - CEP: 63260-000 <br>
+        CNPJ: 15.836.348/0001-90</p>
+      </div>
+    </div> <!-- footerBox end -->
+  </div> <!-- documentBox end -->
+  
+</body>
+</html>
