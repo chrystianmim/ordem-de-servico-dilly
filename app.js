@@ -128,9 +128,19 @@ app.get("/pages/ordem-servico/edit/editarOrdem", (req, res) => {
   });
 });
 
-app.get("/pages/ordem-servico/emitirOrdem", (req, res) => {
-  
-  res.render("pages/ordem-servico/emitirOrdem");
+app.get("/pages/ordem-servico/emitirOrdem", (req, res) => {  
+  let sqlSetor = "SELECT * FROM tb_setores ORDER BY `setor` asc";
+  let sqlFuncao = "SELECT * FROM tb_funcoes ORDER BY `funcao` asc";
+  db.query(sqlSetor, (err, dataSetor) => {
+    if (err) throw err;
+    db.query(sqlFuncao, (err, dataFuncao) => {
+      if (err) throw err;
+      res.render("pages/ordem-servico/emitirOrdem", {
+        dbSetor: dataSetor,
+        dbFuncao: dataFuncao
+      });
+    });
+  });
 });
 
 ////////////////////////

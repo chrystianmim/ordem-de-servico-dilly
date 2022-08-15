@@ -21,11 +21,11 @@
           <div class="row g-3">
             <div class="form-group col-md-4">
               <label for="setor">Setor</label>
-              <select class="form-control" name="setor" id="setor"> </select>
+              <select class="form-control" name="setor" id="setor">
               <option value="" disabled selected>Selecione</option>
                 <%
-                  if (dbSetores != 0) {
-                    dbSetores.forEach((data) => {
+                  if (dbSetor != 0) {
+                    dbSetor.forEach((data) => {
                       %> <option value="<%- data.setor %>"><%- data.setor %></option> <%
                     });
                   } else {
@@ -39,8 +39,8 @@
               <select class="form-control" name="funcao" id="funcao">
                 <option value="" disabled selected>Selecione</option>
                 <%
-                  if (dbFuncoes != 0) {
-                    dbFuncoes.forEach((data) => {
+                  if (dbFuncao != 0) {
+                    dbFuncao.forEach((data) => {
                       %> <option value="<%- data.funcao %>"><%- data.funcao %></option> <%
                     });
                   } else {
