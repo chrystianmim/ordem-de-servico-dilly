@@ -34,252 +34,6 @@ app.set('view engine', 'ejs');
 // ---------- GET Routes -----------
 // ---------------------------------
 
-// ROTA DE TESTE PARA PDF
-// ROTA DE TESTE PARA PDF
-// ROTA DE TESTE PARA PDF
-
-const fs = require("fs");
-const path = "./tmp/OrdemDeServico.pdf";
-
-app.get("/pdf", (req, res) => {
-
-  const pdf = require("html-pdf");
-
-  // pdf parameters
-  const options = { format: 'a4' };
-  var html = `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-  <title>PDF Ordem de Serviço</title>
-  <style>
-    .documentBox {
-      width: 21cm;
-      height: 29.7cm;
-      border: 1px solid black;
-      padding: 1cm;
-    }
-
-    .headerBox {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 10mm;
-    }
-
-    .belowHeaderBox {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 10mm;
-    }
-
-    .documentBodyBox {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      margin-bottom: 10mm;
-      flex: 1 0 auto;
-    }
-
-    .innerBoxProperties {
-      margin-bottom: 10mm;
-    }
-
-    .contentBox {
-      height: 23.7cm;
-    }
-
-    .footerBox {
-      width: 21cm;
-      height: 6cm;
-      flex-shrink: 0;
-      /* bottom: 0;
-      margin-top: auto;
-      margin-bottom: 10mm; */
-    }
-
-    .employeeInfo {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-      margin-bottom: 10mm;
-    }
-
-    .signLine {
-      margin-bottom: 20mm;
-    }
-
-    .companyInfo {
-      display: flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-  <div class="documentBox">
-    <div class="contentBox">
-      <div class="headerBox">
-        <div id="logo">Dilly Logo</div>
-        <div id="docTitle"><strong>ORDEM DE SERVIÇO <br>SEGURANÇA DO TRABALHO</strong></div>
-        <div id="safetyLogo">Safety Logo</div>
-      </div>
-
-      <div class="belowHeaderBox">
-        <div id="setor"><strong>Setor: </strong>{setor name}</div>
-        <div id="funcao"><strong>Função: </strong>{funcao title}</div>
-        <div id="cbo"><strong>CBO: </strong>{cbo number}</div>
-      </div>
-
-      <div class="documentBodyBox">
-        <div class="innerBoxProperties">
-          <div id="descFuncaoTitle"><strong>Descrição da função:</strong></div>
-          <div id="descFuncaoContent">{descFuncao}</div>
-        </div>
-
-        <div class="innerBoxProperties">
-          <div id="agentesAssTitle"><strong>Agentes associados às atividades:</strong></div>
-          <div id="agentesAssContent">{agentesAss}</div>
-        </div>
-
-        <div class="innerBoxProperties">
-          <div id="episRecTitle"><strong>EPI's recomendados:</strong></div>
-          <div id="episRecContent">{episRec}</div>
-        </div>
-
-        <div class="innerBoxProperties">
-          <div id="recomendacoesTitle"><strong>Recomendações gerais:</strong></div>
-          <div id="recomendacoesContent">{recomendacoes}</div>
-        </div>
-
-        <div class="innerBoxProperties">
-          <div id="procAcidenteTitle"><strong>Procedimento em caso de acidente:</strong></div>
-          <div id="procAcidenteContent">{procAcidente}</div>
-        </div>
-
-        <div class="innerBoxProperties">
-          <div id="obsTitle"><strong>Demais observações:</strong></div>
-          <div id="obsContent">{obs}</div>
-        </div>
-
-        <div class="innerBoxProperties">
-          <div id="declaracaoTitle"><strong>Declaração:</strong></div>
-          <div id="declaracaoContent">{declaracao}</div>
-        </div>      
-      </div>
-    </div> <!-- contentBox end -->
-
-    <div class="footerBox">
-      <div class="employeeInfo">
-        <div id="codigo"><strong>CÓDIGO: </strong>{codigo do funcionario}</div>
-        <div id="nome"><strong>NOME: </strong>{nome do funcionario}</div>
-        <div id="data"><strong>DATA: </strong>{data}</div>
-      </div>
-
-      <div class="signLine">
-        <div id="assinatura"><strong>ASSINATURA: </strong>____________________________________________</div>
-      </div>
-
-      <div class="companyInfo">
-        <p><strong>DILLY NORDESTE INDÚSTRIA DE CALÇADOS LTDA.</strong><br>
-        AV. BIICA BASÍLIO, 140, BAIRRO RAIMUNDO FERNANDES <br>
-        BREJO SANTO/CE - CEP: 63260-000 <br>
-        CNPJ: 15.836.348/0001-90</p>
-      </div>
-    </div> <!-- footerBox end -->
-  </div> <!-- documentBox end -->
-  
-</body>
-</html>`;
-
-  // create and download pdf
-  pdf.create(html, options).toFile("./tmp/OrdemDeServico.pdf", (err, response) => {
-    if (err) throw err;
-    console.log('PDF criado');
-    res.download('./tmp/OrdemDeServico.pdf');
-    console.log('PDF baixado');
-  });
-
-  ///// TENTANDO CRIAR O PDF ANTES DE EXECUTAR O DOWNLOAD //////////////////////
-  // VERIFICAR LINK ABAIXO DO METODO WATCHFILE
-  // https://www.geeksforgeeks.org/node-js-fs-watchfile-method/?ref=lbp
-
-  // TENTANDO USANDO SÓ O fs.WATCHFILE
-
-  /* const pdfFile = require("./pdf"); */
-
-  /* fs.watchFile(path, { interval: 500 }, (curr, prev) => {
-    if (curr.birthtime != prev.birthtime) {
-      res.download('./tmp/OrdemDeServico.pdf');
-      console.log(curr.birthtime);
-      console.log(prev.birthtime);
-      return false;
-    };
-  }); */
-
-  /* let hasChanged = false
-
-  fs.watch("./tmp", { persistent: false }, (changeType, file) => {
-    hasChanged = true;
-    console.log(file + ' has ' + changeType);
-  });
-
-  if (hasChanged) {
-    res.download('./tmp/OrdemDeServico.pdf');
-    hasChanged = false;
-  } else {
-    console.log('ih n deu parça');
-  } */
-
-
-
-  // TENTANDO USANDO PROMISE
-
-  /* const downloadPdf = new Promise((res, rej) => {    
-    var fileExists = fs.existsSync(path);
-
-    if (fileExists === true) {      
-      fs.unlinkSync(path);
-      const pdfFile = require("./pdf");
-      res("Requisição aceita");
-    } 
-    
-    if (fileExists === false) {    
-      const pdfFile = require("./pdf");
-      res("Requisição aceita");
-    }
-
-    rej("Requisição rejeitada");
-  });  
-
-  downloadPdf
-    .then(() => {
-      fs.watchFile(path, { interval: 1000 }, (curr, prev) => {
-        if (curr.birthtime != prev.birthtime) {
-          res.download('./tmp/OrdemDeServico.pdf');
-          console.log(curr.birthtime);
-          console.log(prev.birthtime);
-        };
-      });     
-    })
-    .catch((err) => {
-      if (err) throw err;
-    }); */
-
-});
-
 app.get("/", (req, res) => {
   res.render("pages/index");
 });
@@ -344,7 +98,7 @@ app.get("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   });  
 });
 
-// dados para inserir option no select de funcoes da página cadastroOrdem
+// dados para inserir option no select de funcoes da página cadastroOrdem utilizando fetch() no front
 app.get("/pages/ordem-servico/cadastroOrdem/funcoesData", (req, res) => {
   let sqlFuncao = "SELECT * FROM tb_funcoes ORDER BY `funcao` asc";
   db.query(sqlFuncao, (err, data) => {
@@ -353,7 +107,7 @@ app.get("/pages/ordem-servico/cadastroOrdem/funcoesData", (req, res) => {
   });
 });
 
-// dados para inserir option no select de setores da página cadastroOrdem
+// dados para inserir option no select de setores da página cadastroOrdem utilizando fetch() no front
 app.get("/pages/ordem-servico/cadastroOrdem/setoresData", (req, res) => {
   let sqlSetor = "SELECT * FROM tb_setores ORDER BY `setor` asc";
   db.query(sqlSetor, (err, data) => {
@@ -363,7 +117,7 @@ app.get("/pages/ordem-servico/cadastroOrdem/setoresData", (req, res) => {
 });
 
 app.get("/pages/ordem-servico/edit/editarOrdem", (req, res) => {
-  let idOrdem = req.query.idOrdem;
+  let idOrdem = req.query.idOrdem; // pega o valor que está sendo passado na URL
   let sql = (`SELECT * FROM tb_ordens INNER JOIN tb_setores ON tb_ordens.setor_id = tb_setores.id INNER JOIN tb_funcoes ON tb_ordens.funcao_id = tb_funcoes.id WHERE tb_ordens.id=${idOrdem}`);
   db.query(sql, (err, data) => {
     if (err) throw err;
@@ -375,7 +129,35 @@ app.get("/pages/ordem-servico/edit/editarOrdem", (req, res) => {
 });
 
 app.get("/pages/ordem-servico/emitirOrdem", (req, res) => {
+  
   res.render("pages/ordem-servico/emitirOrdem");
+});
+
+////////////////////////
+///////// PDF //////////
+////////////////////////
+
+app.get("/pdf", (req, res) => {
+
+  const fs = require("fs");
+  const path = "./tmp/OrdemDeServico.pdf";
+  const pdf = require("html-pdf");
+
+  // pdf parameters
+  const options = { format: 'a4' };
+  var html = `bore po`;
+
+  // create and download pdf
+  pdf.create(html, options).toFile("./tmp/OrdemDeServico.pdf", (err, response) => {
+    if (err) throw err;
+    console.log('PDF criado');
+    res.download('./tmp/OrdemDeServico.pdf');
+    console.log('PDF baixado');
+  });
+});
+
+app.get("/pages/ordem-servico/printOrdem", (req, res) => {
+  res.render("pages/ordem-servico/printOrdem");
 });
 
 // ###########################

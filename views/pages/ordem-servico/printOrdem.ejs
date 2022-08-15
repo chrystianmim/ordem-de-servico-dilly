@@ -7,6 +7,14 @@
   <title>PDF Ordem de Serviço</title>
   <style>
 
+    @media print {
+      @page { margin: 0; }
+    }
+
+    body {
+      font-family: "Arial Narrow", Arial, sans-serif;
+    }
+
     .documentBox {
       width: 210mm;
       height: 297mm;
@@ -50,12 +58,11 @@
     }
 
     .footerBox {
+      /* display: flex;
+      justify-content: end;
+      flex-direction: column; */
       width: 210mm;
-      height: 60mm;
-      flex-shrink: 0;
-      /* bottom: 0;
-      margin-top: auto;
-      margin-bottom: 10mm; */
+      height: 60mm;      
     }
 
     .employeeInfo {
@@ -84,9 +91,9 @@
   <div class="documentBox">
     <div class="contentBox">
       <div class="headerBox">
-        <div id="logo">Dilly Logo</div>
-        <div id="docTitle"><strong>ORDEM DE SERVIÇO <br>SEGURANÇA DO TRABALHO</strong></div>
-        <div id="safetyLogo">Safety Logo</div>
+        <div id="logo"><img src="\src\pdfHeader_Dilly.png" alt="Logo da empresa" height="40px"></div>
+        <div id="docTitle"><strong>ORDEM DE SERVIÇO<br>SEGURANÇA DO TRABALHO</strong></div>
+        <div id="safetyLogo"><img src="\src\pdfHeader_Safety.png" alt="Logo da segurança" height="40px"></div>
       </div>
 
       <div class="belowHeaderBox">
@@ -152,6 +159,8 @@
       </div>
     </div> <!-- footerBox end -->
   </div> <!-- documentBox end -->
+
+  <script>window.onload = () => { window.print(); }</script>
   
 </body>
 </html>

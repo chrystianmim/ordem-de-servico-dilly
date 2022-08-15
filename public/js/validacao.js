@@ -47,7 +47,8 @@ var cleave = new Cleave('#cbo', {
   blocks: [4, 2],
 });
 
-// consumindo API fetch() buscando dados SQL das funçoes
+// consumindo API fetch() buscando dados SQL das funçoes.
+// Estes dados serão necessários para atribuir o id da função ao option do select logo mais
 let funcoesData = "";
 async function fetchFuncoesData() {
   await fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem/funcoesData')
@@ -56,6 +57,7 @@ async function fetchFuncoesData() {
 }
 
 // consumindo API fetch() buscando dados SQL dos setores
+// Estes dados serão necessários para atribuir o id do setor ao option do select logo mais
 let setoresData = "";
 async function fetchSetoresData() {
   await fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem/setoresData')
@@ -95,10 +97,10 @@ $('#formCadOrdem').submit(function () { // função submit do jQuery direto no f
   let inputTermoResp = document.getElementById('termoResp');
   let erro = document.getElementById('erro');  
  
-  // validação dos campos para mostrar ou não o erro
-
   // inicia a função tornando o erro invisível
   erro.classList.add('d-none');
+
+  // validação dos campos para mostrar ou não o erro
   
   if (inputSetor.value == '') {
     erro.classList.remove('d-none');
@@ -157,10 +159,12 @@ $('#formCadOrdem').submit(function () { // função submit do jQuery direto no f
   // atribuir o id da função e cbo aos respectivos inputs
   for (let i = 0; i < funcoesData.length; i++) {
     if (funcoesData[i].funcao === inputFuncao.value) {
-      // criar option com valor do id para possibilitar incluir ao inputFuncao.value
+      // só é possível atribuir valor ao inputFuncao.value se este valor ja existir dentro das option
+      // logo, como não existe, deve-se criar option com valor do id para possibilitar incluir ao inputFuncao.value
       let option = document.createElement('option');
       option.value = funcoesData[i].id;
       inputFuncao.add(option);
+      // atribuir o id ao funcao.value
       inputFuncao.value = funcoesData[i].id;      
       // atribuir o id ao cbo.value
       inputCbo.value = funcoesData[i].id;
@@ -170,7 +174,8 @@ $('#formCadOrdem').submit(function () { // função submit do jQuery direto no f
   // atribuir o id do setor input
   for (let i = 0; i < setoresData.length; i++) {
     if (setoresData[i].setor === inputSetor.value) {
-      // criar option com valor do id para possibilitar incluir ao inputSetor.value
+      // só é possível atribuir valor ao inputSetor.value se este valor ja existir dentro das option
+      // logo, como não existe, deve-se criar option com valor do id para possibilitar incluir ao inputSetor.value
       let option = document.createElement('option');
       option.value = setoresData[i].id;
       inputSetor.add(option);
@@ -178,17 +183,6 @@ $('#formCadOrdem').submit(function () { // função submit do jQuery direto no f
       inputSetor.value = setoresData[i].id;
     }
   };
-
-  /* console.log(inputSetor.value)
-  console.log(inputFuncao.value)
-  console.log(inputCbo.value)
-  console.log(inputDescFuncao.value)
-  console.log(inputRiscosAss.value)
-  console.log(inputEpisRec.value)
-  console.log(inputMedidasPrev.value)
-  console.log(inputProcAcidente.value)
-  console.log(inputObs.value)
-  console.log(inputTermoResp.value) */
 
   return true
 });
