@@ -82,7 +82,7 @@ campoFuncao.addEventListener("change", () => {
   };
 });
 
-// validação para formulário de cadastro de ordem de serviço;
+// validação para formulário de CADASTRO de ordem de serviço;
 $('#formCadOrdem').submit(function () { // função submit do jQuery direto no form
   // captura campos  
   let inputSetor = document.getElementById('setor');
@@ -188,16 +188,96 @@ $('#formCadOrdem').submit(function () { // função submit do jQuery direto no f
 });
 
 // mostrar campo de sucesso para cadastroOrdem
-
-let sucesso = document.getElementById('sucesso');
-
-// torna alerta de sucesso não visível
-sucesso.classList.add('d-none');
-
-// caso sucesso, mostra alerta de sucesso
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const success = urlParams.get('success');
-if (success == 1) {
-  sucesso.classList.remove('d-none');
-};
+if (success) {
+  let sucesso = document.getElementById('sucesso');
+  // torna alerta de sucesso não visível
+  sucesso.classList.add('d-none');
+  if (success == 1) { // caso sucesso, mostra alerta de sucesso
+    sucesso.classList.remove('d-none');
+  };
+}
+
+// validação para formulário de EMISSÃO de ordem de serviço;
+$('#formEmitirOrdem').submit(function () { // função submit do jQuery direto no form
+  // captura campos
+  let inputSetor = document.getElementById('setor');
+  let inputFuncao = document.getElementById('funcao');
+  let inputCbo = document.getElementById('cbo');
+  let inputCodigo = document.getElementById('codigo');
+  let inputNome = document.getElementById('nome');
+  let inputData = document.getElementById('data');
+  let erro = document.getElementById('erro');
+
+  // inicia a função tornando o erro invisível
+  erro.classList.add('d-none');
+
+  // validação dos campos para mostrar ou não o erro
+
+  if (inputSetor.value == '') {
+    erro.classList.remove('d-none');
+    inputSetor.focus()
+    return false
+  }
+
+  if (inputFuncao.value == '') {
+    erro.classList.remove('d-none');
+    inputFuncao.focus()
+    return false
+  }
+
+  if (inputCbo.value == '') {
+    erro.classList.remove('d-none');
+    inputCbo.focus()
+    return false
+  }
+
+  if (inputCodigo.value == '') {
+    erro.classList.remove('d-none');
+    inputCodigo.focus()
+    return false
+  }
+
+  if (inputNome.value == '') {
+    erro.classList.remove('d-none');
+    inputNome.focus()
+    return false
+  }
+
+  if (inputData.value == '') {
+    erro.classList.remove('d-none');
+    inputData.focus()
+    return false
+  }
+
+  // atribuir o id da função e cbo aos respectivos inputs
+  for (let i = 0; i < funcoesData.length; i++) {
+    if (funcoesData[i].funcao === inputFuncao.value) {
+      // só é possível atribuir valor ao inputFuncao.value se este valor ja existir dentro das option
+      // logo, como não existe, deve-se criar option com valor do id para possibilitar incluir ao inputFuncao.value
+      let option = document.createElement('option');
+      option.value = funcoesData[i].id;
+      inputFuncao.add(option);
+      // atribuir o id ao funcao.value e ao cbo.value
+      inputFuncao.value = funcoesData[i].id;
+      inputCbo.value = funcoesData[i].id;
+    };
+  };
+
+  // atribuir o id do setor input
+  for (let i = 0; i < setoresData.length; i++) {
+    if (setoresData[i].setor === inputSetor.value) {
+      // só é possível atribuir valor ao inputSetor.value se este valor ja existir dentro das option
+      // logo, como não existe, deve-se criar option com valor do id para possibilitar incluir ao inputSetor.value
+      let option = document.createElement('option');
+      option.value = setoresData[i].id;
+      inputSetor.add(option);
+      // atribuir o id ao setor.value
+      inputSetor.value = setoresData[i].id;
+    }
+  };
+
+  return true
+});

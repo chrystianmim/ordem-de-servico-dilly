@@ -207,7 +207,7 @@ app.post("/pages/ordem-servico/cadastroOrdem", (req, res) => {
   db.query(query, (err) => {
     if (err) throw err;
     res.redirect("cadastroOrdem?success=1");
-  }) ;
+  });
 
   // ENVIAR QUERY STRING SUCCSESS PARA FRONT END https://www.sitepoint.com/get-url-parameters-with-javascript/
 
@@ -215,11 +215,48 @@ app.post("/pages/ordem-servico/cadastroOrdem", (req, res) => {
 
 // ##########################################
 
-// SQL read queries
+// SQL read queries ###############
+
+app.post("/pages/ordem-servico/printOrdem", (req, res) => {
+  let setor = req.body.setor;
+  let funcao = req.body.funcao;
+  let cbo = req.body.cbo;
+  let codigo = req.body.codigo;
+  let nome = req.body.nome;
+  nome = nome.toUpperCase(); // tratamento do nome para uppercase
+  let dataEmissao = req.body.data;
+  dataEmissao = dataEmissao.split('-').reverse().join('/'); // tratamento da data para o formato dd/mm/yyyy
+
+  // objeto para ser enviado para a página printOrdem
+  let infoObj = {
+      codigo,
+      nome,
+      dataEmissao
+    }
+
+  console.log(`
+  setor: ${setor},
+  funcao: ${funcao},
+  cbo: ${cbo},
+  codigo: ${codigo},
+  nome: ${nome},
+  data: ${dataEmissao}`);
+
+  let sql = (`SELECT * FROM tb_ordens INNER JOIN tb_setores ON tb_ordens.setor_id = tb_setores.id INNER JOIN tb_funcoes ON tb_ordens.funcao_id = tb_funcoes.id`);
+
+  db.query(sql, (err, data) => {
+    if (err) throw err;
+    res.render("pages/ordem-servico/printOrdem", {
+      dbData: data,
+      infoColaborador: infoObj
+    });
+    console.log(data);
+  });  
+})
 
 // ##########################################
 
-// SQL update queries
+// SQL update queries ###############
 
 app.post("/pages/ordem-servico/edit/editarSetor", (req, res) => { // update setor
   let setor = req.body.setor;

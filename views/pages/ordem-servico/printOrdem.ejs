@@ -75,7 +75,7 @@
     }
 
     .signLine {
-      margin-bottom: 20mm;
+      margin-bottom: 10mm;
     }
 
     .companyInfo {
@@ -97,45 +97,45 @@
       </div>
 
       <div class="belowHeaderBox">
-        <div id="setor"><strong>Setor: </strong>{setor name}</div>
-        <div id="funcao"><strong>Função: </strong>{funcao title}</div>
-        <div id="cbo"><strong>CBO: </strong>{cbo number}</div>
+        <div id="setor"><strong>Setor: </strong><%- dbData[0].setor %></div>
+        <div id="funcao"><strong>Função: </strong><%- dbData[0].funcao %></div>
+        <div id="cbo"><strong>CBO: </strong><%- dbData[0].cbo %></div>
       </div>
 
       <div class="documentBodyBox">
         <div class="innerBoxProperties">
           <div id="descFuncaoTitle"><strong>Descrição da função:</strong></div>
-          <div id="descFuncaoContent">{descFuncao}</div>
+          <div id="descFuncaoContent"><%- dbData[0].desc_funcao %></div>
         </div>
 
         <div class="innerBoxProperties">
           <div id="agentesAssTitle"><strong>Agentes associados às atividades:</strong></div>
-          <div id="agentesAssContent">{agentesAss}</div>
+          <div id="agentesAssContent"><%- dbData[0].riscos_atividade %></div>
         </div>
 
         <div class="innerBoxProperties">
           <div id="episRecTitle"><strong>EPI's recomendados:</strong></div>
-          <div id="episRecContent">{episRec}</div>
+          <div id="episRecContent"><%- dbData[0].epis %></div>
         </div>
 
         <div class="innerBoxProperties">
           <div id="recomendacoesTitle"><strong>Recomendações gerais:</strong></div>
-          <div id="recomendacoesContent">{recomendacoes}</div>
+          <div id="recomendacoesContent"><%- dbData[0].medidas_prev %></div>
         </div>
 
         <div class="innerBoxProperties">
           <div id="procAcidenteTitle"><strong>Procedimento em caso de acidente:</strong></div>
-          <div id="procAcidenteContent">{procAcidente}</div>
+          <div id="procAcidenteContent"><%- dbData[0].procedimento %></div>
         </div>
 
         <div class="innerBoxProperties">
           <div id="obsTitle"><strong>Demais observações:</strong></div>
-          <div id="obsContent">{obs}</div>
+          <div id="obsContent"><%- dbData[0].obs %></div>
         </div>
 
         <div class="innerBoxProperties">
           <div id="declaracaoTitle"><strong>Declaração:</strong></div>
-          <div id="declaracaoContent">{declaracao}</div>
+          <div id="declaracaoContent"><%- dbData[0].termo_resp %></div>
         </div>      
       </div>
     </div> <!-- contentBox end -->
@@ -153,8 +153,8 @@
 
       <div class="companyInfo">
         <p><strong>DILLY NORDESTE INDÚSTRIA DE CALÇADOS LTDA.</strong><br>
-        AV. BIICA BASÍLIO, 140, BAIRRO RAIMUNDO FERNANDES <br>
-        BREJO SANTO/CE - CEP: 63260-000 <br>
+        AV. BIICA BASÍLIO, 140, BAIRRO RAIMUNDO FERNANDES<br>
+        BREJO SANTO/CE - CEP: 63260-000<br>
         CNPJ: 15.836.348/0001-90</p>
       </div>
     </div> <!-- footerBox end -->
