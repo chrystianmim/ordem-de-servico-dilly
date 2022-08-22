@@ -55,6 +55,7 @@
 
     .contentBox {
       height: 237mm;
+      margin-bottom: 10mm;
     }
 
     .footerBox {
@@ -142,9 +143,9 @@
 
     <div class="footerBox">
       <div class="employeeInfo">
-        <div id="codigo"><strong>CÓDIGO: </strong>{codigo do funcionario}</div>
-        <div id="nome"><strong>NOME: </strong>{nome do funcionario}</div>
-        <div id="data"><strong>DATA: </strong>{data}</div>
+        <div id="codigo"><strong>CÓDIGO: </strong><%- infoColaborador.codigo %></div>
+        <div id="nome"><strong>NOME: </strong><%- infoColaborador.nome %></div>
+        <div id="data"><strong>DATA: </strong><%- infoColaborador.dataEmissao %></div>
       </div>
 
       <div class="signLine">
