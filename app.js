@@ -1,3 +1,5 @@
+const isLocal = false;
+
 // express app
 const express = require("express");
 const app = express();
@@ -315,6 +317,12 @@ app.get("/pages/ordem-servico/delete/deletarOrdem", (req, res) => { // delete or
 
 // ##########################################
 
-app.listen(3000, "localhost", () => {
-  console.log("Server connected on port: 3000");
-});
+if (isLocal) {
+  app.listen(3000, "localhost", () => {
+    console.log("LOCAL Server connected on port: 3000");
+  });
+} else {
+  app.listen(3000, "177.153.59.145", () => {
+    console.log("WEB Server connected on port: 3000");
+  });
+}

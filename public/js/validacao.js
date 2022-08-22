@@ -1,3 +1,5 @@
+const isLocal = false;
+
 // validação para formulário de cadastro de setor;
 $('#formSetor').submit(function() { // função submit do jQuery direto no form
   let setor = document.querySelector('#setor');
@@ -47,22 +49,44 @@ var cleave = new Cleave('#cbo', {
   blocks: [4, 2],
 });
 
-// consumindo API fetch() buscando dados SQL das funçoes.
-// Estes dados serão necessários para atribuir o id da função ao option do select logo mais
-let funcoesData = "";
-async function fetchFuncoesData() {
-  await fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem/funcoesData')
-    .then(response => response.json())
-    .then((data) => funcoesData = data.dbFuncoes)
-}
 
-// consumindo API fetch() buscando dados SQL dos setores
-// Estes dados serão necessários para atribuir o id do setor ao option do select logo mais
-let setoresData = "";
-async function fetchSetoresData() {
-  await fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem/setoresData')
-    .then(response => response.json())
-    .then((data) => setoresData = data.dbSetores)
+
+if (isLocal) {
+  // consumindo API fetch() buscando dados SQL das funçoes.
+  // Estes dados serão necessários para atribuir o id da função ao option do select logo mais
+  let funcoesData = "";
+  async function fetchFuncoesData() {
+    await fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem/funcoesData')
+      .then(response => response.json())
+      .then((data) => funcoesData = data.dbFuncoes)
+  }
+
+  // consumindo API fetch() buscando dados SQL dos setores
+  // Estes dados serão necessários para atribuir o id do setor ao option do select logo mais
+  let setoresData = "";
+  async function fetchSetoresData() {
+    await fetch('http://localhost:3000/pages/ordem-servico/cadastroOrdem/setoresData')
+      .then(response => response.json())
+      .then((data) => setoresData = data.dbSetores)
+  }
+} else {
+  // consumindo API fetch() buscando dados SQL das funçoes.
+  // Estes dados serão necessários para atribuir o id da função ao option do select logo mais
+  let funcoesData = "";
+  async function fetchFuncoesData() {
+    await fetch('http://177.153.59.145:3000/pages/ordem-servico/cadastroOrdem/funcoesData')
+      .then(response => response.json())
+      .then((data) => funcoesData = data.dbFuncoes)
+  }
+
+  // consumindo API fetch() buscando dados SQL dos setores
+  // Estes dados serão necessários para atribuir o id do setor ao option do select logo mais
+  let setoresData = "";
+  async function fetchSetoresData() {
+    await fetch('http://177.153.59.145:3000/pages/ordem-servico/cadastroOrdem/setoresData')
+      .then(response => response.json())
+      .then((data) => setoresData = data.dbSetores)
+  }
 }
 
 // executa o fetch
