@@ -11,8 +11,9 @@ const ejs = require('ejs');
 const mysql = require("mysql2");
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  database: 'db_ordem-de-servico'
+  user: 'admin',
+  database: 'db_ordem-de-servico',
+  password: 'admin'
 });
 
 db.connect((err) => {
