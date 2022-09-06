@@ -150,7 +150,7 @@ app.get("/pages/ordem-servico/emitirOrdem", (req, res) => {
 ///////// PDF //////////
 ////////////////////////
 
-app.get("/pdf", (req, res) => {
+/* app.get("/pdf", (req, res) => {
 
   const fs = require("fs");
   const path = "./tmp/OrdemDeServico.pdf";
@@ -167,7 +167,7 @@ app.get("/pdf", (req, res) => {
     res.download('./tmp/OrdemDeServico.pdf');
     console.log('PDF baixado');
   });
-});
+}); */
 
 app.get("/pages/ordem-servico/printOrdem", (req, res) => {
   res.render("pages/ordem-servico/printOrdem");
@@ -231,11 +231,7 @@ app.post("/pages/ordem-servico/printOrdem", (req, res) => {
   dataEmissao = dataEmissao.split('-').reverse().join('/'); // tratamento da data para o formato dd/mm/yyyy
 
   // objeto para ser enviado para a página printOrdem
-  let infoObj = {
-      codigo,
-      nome,
-      dataEmissao
-    }
+  let infoObj = { codigo, nome, dataEmissao }
 
   console.log(`
   setor: ${setor},
@@ -243,9 +239,15 @@ app.post("/pages/ordem-servico/printOrdem", (req, res) => {
   cbo: ${cbo},
   codigo: ${codigo},
   nome: ${nome},
-  data: ${dataEmissao}`);
+  data: ${dataEmissao}
+  `);
 
-  let sql = (`SELECT * FROM tb_ordens INNER JOIN tb_setores ON tb_ordens.setor_id = tb_setores.id INNER JOIN tb_funcoes ON tb_ordens.funcao_id = tb_funcoes.id`);
+  let sql = (`
+  SELECT * FROM tb_ordens
+  INNER JOIN tb_setores ON tb_ordens.setor_id = tb_setores.id 
+  INNER JOIN tb_funcoes ON tb_ordens.funcao_id = tb_funcoes.id 
+  WHERE tb_setores.setor = ${setor} AND tb_funcoes.funcao = ${funcao}
+  `);
 
   db.query(sql, (err, data) => {
     if (err) throw err;
